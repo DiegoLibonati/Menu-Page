@@ -23,20 +23,6 @@ I made a web page that allows you to see a food menu. This menu has different bu
 2. CSS3
 3. HTML5
 
-## Galery
-
-![Menu-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/menu-0.jpg)
-
-![Menu-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/menu-1.jpg)
-
-![Menu-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/menu-2.jpg)
-
-![Menu-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/menu-3.jpg)
-
-## Portfolio Link
-
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Menu%20Page`
-
 ## Video
 
 https://user-images.githubusercontent.com/99032604/199139166-84b8a1cc-c6ad-424a-90e0-ee2c2bcb3696.mp4
