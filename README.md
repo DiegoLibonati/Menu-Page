@@ -13,13 +13,20 @@
 2. Join to the correct path of the clone
 3. Open index.html in your favorite navigator
 
+---
+
+1. Clone the repository
+2. Join to the correct path of the clone
+3. Execute: `yarn install`
+4. Execute: `yarn dev`
+
 ## Description
 
 I made a web page that allows you to see a food menu. This menu has different buttons and depending on which button we touch it will bring us that type of food. If we tap on All, it will bring up all the meals again. I made this page with POO.
 
 ## Technologies used
 
-1. Javascript
+1. Typescript
 2. CSS3
 3. HTML5
 
@@ -32,70 +39,72 @@ https://user-images.githubusercontent.com/99032604/199139166-84b8a1cc-c6ad-424a-
 In `sectionCenter` we get where we are going to render the meals, then we get all the buttons in the other variables which would be `all, breakfast, lunch and shakes`:
 
 ```
-const sectionCenter = document.querySelector(".section_container_article");
-const btnAll = document.getElementById("all");
-const btnBreakfast = document.getElementById("breakfast");
-const btnLunch = document.getElementById("lunch");
-const btnShakes = document.getElementById("shakes");
+const sectionCenter = document.querySelector(
+  ".section_container_article"
+) as HTMLElement;
+const btnAll = document.getElementById("all") as HTMLButtonElement;
+const btnBreakfast = document.getElementById("breakfast") as HTMLButtonElement;
+const btnLunch = document.getElementById("lunch") as HTMLButtonElement;
+const btnShakes = document.getElementById("shakes") as HTMLButtonElement;
 ```
 
 The class `Food` will have as attributes `name, amount, description, img` and a single method called `insertInformation()` this method will be in charge of printing the HTML with the information that we pass to it by the attributes:
 
 ```
-class Food {
-  constructor(name, amount, description, img) {
-    this.name = name;
-    this.amount = amount;
-    this.description = description;
-    this.img = img;
-  }
+export class Food {
+  constructor(
+    public name: string,
+    public amount: string,
+    public description: string,
+    public img: string
+  ) {}
 
-  insertInformation() {
-    return `<div class="section_container_article-item">
-
-        <div class="item-imagen">
-            <img src="${this.img}" alt="${this.name}">
-        </div>
-
-        <div class="section_container_article-informacion">
-            <div class="item-informacion">
-            <h3>${this.name}</h3>
-            <h3>${this.amount}</h3>
+  insertInformation(): string {
+    return `
+        <div class="section_container_article-item">         
+            <div class="item-imagen">
+                <img src="${this.img}" alt="${this.name}">
             </div>
-
-            <div class="item-descripcion">
-                <p>${this.description}</p>
+  
+            <div class="section_container_article-informacion">
+                <div class="item-informacion">
+                <h3>${this.name}</h3>
+                <h3>${this.amount}</h3>
+                </div>
+  
+                <div class="item-descripcion">
+                    <p>${this.description}</p>
+                </div>
             </div>
         </div>
-
-    </div>`;
+      `;
   }
 }
 ```
 
-In this case we will take as an example `lunchs` this will be our array of this specific category in which we created two types of food that are lunch, we created 2 objects of the class `Food` and they were instantiated:
+In this case we will take as an example `lunchs` this will be our array of this specific category in which we created two types of food that are lunch, we created 2 objects of the class `Lunch` and they were instantiated:
 
 ```
-const lunchOne = new Food(
+const lunchOne = new Lunch(
   "Big-batch bolognese",
   "$15",
   "Whip up a huge batch of bolognese that's fit to feed a hungry crowd, or freeze half for a speedy midweek meal",
   "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1074456_10-1a5351d.jpg?quality=90&webp=true&resize=300,272"
 );
-const lunchTwo = new Food(
+const lunchTwo = new Lunch(
   "Meal prep: pasta",
   "$15",
   "Make three lunchbox pasta meals in one go to save you time midweek. They're nutritious and healthy with variations using salmon, chicken and aubergine",
   "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/mealprep-pasta-merged_web3_copy-8687106.jpg?quality=90&webp=true&resize=300,272"
 );
 
-const lunchs = [lunchOne, lunchTwo];
+const lunchs = allFoods.filter((food) => food instanceof Lunch);
 ```
 
 In this array we will store all the meals to render all the meals when we touch the `All` button:
 
 ```
-const allFoods = [
+const allFoods: (Breakfast & Lunch & Shake)[] = [
   breakfastOne,
   breakfastTwo,
   breakfastTr,
@@ -111,39 +120,38 @@ When the DOM is fully loaded all the meals will be displayed and then each butto
 
 ```
 window.addEventListener("DOMContentLoaded", () => {
-  let displayMenu = allFoods.map(function (item) {
+  const foodStrings = allFoods.map(function (item) {
     return item.insertInformation();
   });
 
-  displayMenu = displayMenu.join("");
-  sectionCenter.innerHTML = displayMenu;
+  sectionCenter.innerHTML = foodStrings.join("");
 
   btnAll.addEventListener("click", () => {
-    sectionCenter.innerHTML = displayMenu;
+    sectionCenter.innerHTML = foodStrings.join("");
   });
 
   btnBreakfast.addEventListener("click", () => {
-    let displayMenuBreakfast = breakfasts.map(function (bf) {
-      return bf.insertInformation();
+    const displayMenuBreakfast = breakfasts.map(function (breakfast) {
+      return breakfast.insertInformation();
     });
-    displayMenuBreakfast = displayMenuBreakfast.join("");
-    sectionCenter.innerHTML = displayMenuBreakfast;
+
+    sectionCenter.innerHTML = displayMenuBreakfast.join("");
   });
 
   btnLunch.addEventListener("click", () => {
-    let displayMenuLunch = lunchs.map(function (lunch) {
+    const displayMenuLunch = lunchs.map(function (lunch) {
       return lunch.insertInformation();
     });
-    displayMenuLunch = displayMenuLunch.join("");
-    sectionCenter.innerHTML = displayMenuLunch;
+
+    sectionCenter.innerHTML = displayMenuLunch.join("");
   });
 
   btnShakes.addEventListener("click", () => {
-    let displayMenuShakes = shakes.map(function (shakes) {
+    const displayMenuShakes = shakes.map(function (shakes) {
       return shakes.insertInformation();
     });
-    displayMenuShakes = displayMenuShakes.join("");
-    sectionCenter.innerHTML = displayMenuShakes;
+
+    sectionCenter.innerHTML = displayMenuShakes.join("");
   });
 });
 ```
