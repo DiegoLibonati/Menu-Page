@@ -27,8 +27,12 @@ I made a web page that allows you to see a food menu. This menu has different bu
 ## Technologies used
 
 1. Typescript
-2. CSS3
+2. TailwindCSS
 3. HTML5
+
+## Portfolio Link
+
+[`https://www.diegolibonati.com.ar/#/project/101`](https://www.diegolibonati.com.ar/#/project/101)
 
 ## Video
 
@@ -59,25 +63,52 @@ export class Food {
     public img: string
   ) {}
 
-  insertInformation(): string {
-    return `
-        <div class="section_container_article-item">         
-            <div class="item-imagen">
-                <img src="${this.img}" alt="${this.name}">
-            </div>
-  
-            <div class="section_container_article-informacion">
-                <div class="item-informacion">
-                <h3>${this.name}</h3>
-                <h3>${this.amount}</h3>
-                </div>
-  
-                <div class="item-descripcion">
-                    <p>${this.description}</p>
-                </div>
-            </div>
-        </div>
-      `;
+  insertCard(): HTMLDivElement {
+    const div = document.createElement("div");
+    div.setAttribute(
+      "class",
+      "flex flex-col w-full max-w-96 h-96 bg-[#FADCD9] m-2 rounded-b-lg"
+    );
+
+    const img = document.createElement("img");
+    img.setAttribute("class", "w-full h-[65%] rounded-t-lg object-cover");
+    img.src = this.img;
+    img.alt = this.name;
+
+    const div2 = document.createElement("div");
+    div2.setAttribute(
+      "class",
+      "flex flex-col items-start justify-start w-full px-2 h-[35%]"
+    );
+
+    const div3 = document.createElement("div");
+    div3.setAttribute(
+      "class",
+      "flex flex-row items-center justify-between w-full mt-2"
+    );
+
+    const h2 = document.createElement("h2");
+    h2.setAttribute("class", "truncate w-64 text-base font-semibold");
+    h2.textContent = this.name;
+
+    const h3 = document.createElement("h3");
+    h3.setAttribute("class", "rounded-lg p-1 bg-[#F9F1F0] text-sm font-semibold");
+    h3.textContent = this.amount;
+
+    div3.append(h2);
+    div3.append(h3);
+
+    const p = document.createElement("p");
+    p.setAttribute("class", "text-sm mt-2");
+    p.textContent = this.description;
+
+    div2.append(div3);
+    div2.append(p);
+
+    div.append(img);
+    div.append(div2);
+
+    return div;
   }
 }
 ```
@@ -113,6 +144,8 @@ const allFoods: (Breakfast & Lunch & Shake)[] = [
   lunchTwo,
   shakesOne,
   shakesTwo,
+  shakesTr,
+  shakesFour,
 ];
 ```
 
@@ -121,37 +154,44 @@ When the DOM is fully loaded all the meals will be displayed and then each butto
 ```
 window.addEventListener("DOMContentLoaded", () => {
   const foodStrings = allFoods.map(function (item) {
-    return item.insertInformation();
+    return item.insertCard();
   });
 
-  sectionCenter.innerHTML = foodStrings.join("");
+  sectionCenter.append(...foodStrings);
 
   btnAll.addEventListener("click", () => {
-    sectionCenter.innerHTML = foodStrings.join("");
+    sectionCenter.innerHTML = "";
+    sectionCenter.append(...foodStrings);
   });
 
   btnBreakfast.addEventListener("click", () => {
     const displayMenuBreakfast = breakfasts.map(function (breakfast) {
-      return breakfast.insertInformation();
+      return breakfast.insertCard();
     });
 
-    sectionCenter.innerHTML = displayMenuBreakfast.join("");
+    sectionCenter.innerHTML = "";
+
+    sectionCenter.append(...displayMenuBreakfast);
   });
 
   btnLunch.addEventListener("click", () => {
     const displayMenuLunch = lunchs.map(function (lunch) {
-      return lunch.insertInformation();
+      return lunch.insertCard();
     });
 
-    sectionCenter.innerHTML = displayMenuLunch.join("");
+    sectionCenter.innerHTML = "";
+
+    sectionCenter.append(...displayMenuLunch);
   });
 
   btnShakes.addEventListener("click", () => {
     const displayMenuShakes = shakes.map(function (shakes) {
-      return shakes.insertInformation();
+      return shakes.insertCard();
     });
 
-    sectionCenter.innerHTML = displayMenuShakes.join("");
+    sectionCenter.innerHTML = "";
+
+    sectionCenter.append(...displayMenuShakes);
   });
 });
 ```

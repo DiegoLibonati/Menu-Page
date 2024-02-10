@@ -1,6 +1,7 @@
 import { Breakfast } from "./Breakfast";
 import { Lunch } from "./Lunch";
 import { Shake } from "./Shake";
+import "./styles.css";
 
 const sectionCenter = document.querySelector(
   ".section_container_article"
@@ -60,6 +61,18 @@ const shakesTwo = new Shake(
   "Start your day with a healthy smoothie. As well as being packed with nutrients, the deep green of spirulina adds rich vibrancy while avocado gives a silky texture",
   "https://images.immediate.co.uk/production/volatile/sites/30/2022/04/Spirulina-smoothie-40fc97e.jpg?quality=90&webp=true&resize=300,272"
 );
+const shakesTr = new Shake(
+  "Homemade protein shake",
+  "$17",
+  "The easiest, tastiest way to pack in the protein. Shake up your morning with this delicious, creamy drink you can make in minutes",
+  "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/protein-shake--ae44464.jpg?quality=90&webp=true&resize=300,272"
+);
+const shakesFour = new Shake(
+  "Boozy caramel mini shakes",
+  "$10",
+  "Dulce de leche and Irish cream liqueur in a mini milkshake shot, perfect for parties!",
+  "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/mini-caramel-milkshake-pots-f4d4df1.jpg?quality=90&webp=true&resize=300,272"
+);
 
 const allFoods: (Breakfast & Lunch & Shake)[] = [
   breakfastOne,
@@ -70,6 +83,8 @@ const allFoods: (Breakfast & Lunch & Shake)[] = [
   lunchTwo,
   shakesOne,
   shakesTwo,
+  shakesTr,
+  shakesFour,
 ];
 
 const breakfasts = allFoods.filter((food) => food instanceof Breakfast);
@@ -78,36 +93,43 @@ const shakes = allFoods.filter((food) => food instanceof Shake);
 
 window.addEventListener("DOMContentLoaded", () => {
   const foodStrings = allFoods.map(function (item) {
-    return item.insertInformation();
+    return item.insertCard();
   });
 
-  sectionCenter.innerHTML = foodStrings.join("");
+  sectionCenter.append(...foodStrings);
 
   btnAll.addEventListener("click", () => {
-    sectionCenter.innerHTML = foodStrings.join("");
+    sectionCenter.innerHTML = "";
+    sectionCenter.append(...foodStrings);
   });
 
   btnBreakfast.addEventListener("click", () => {
     const displayMenuBreakfast = breakfasts.map(function (breakfast) {
-      return breakfast.insertInformation();
+      return breakfast.insertCard();
     });
 
-    sectionCenter.innerHTML = displayMenuBreakfast.join("");
+    sectionCenter.innerHTML = "";
+
+    sectionCenter.append(...displayMenuBreakfast);
   });
 
   btnLunch.addEventListener("click", () => {
     const displayMenuLunch = lunchs.map(function (lunch) {
-      return lunch.insertInformation();
+      return lunch.insertCard();
     });
 
-    sectionCenter.innerHTML = displayMenuLunch.join("");
+    sectionCenter.innerHTML = "";
+
+    sectionCenter.append(...displayMenuLunch);
   });
 
   btnShakes.addEventListener("click", () => {
     const displayMenuShakes = shakes.map(function (shakes) {
-      return shakes.insertInformation();
+      return shakes.insertCard();
     });
 
-    sectionCenter.innerHTML = displayMenuShakes.join("");
+    sectionCenter.innerHTML = "";
+
+    sectionCenter.append(...displayMenuShakes);
   });
 });
