@@ -36,7 +36,7 @@ I made a web page that allows you to see a food menu. This menu has different bu
 
 ## Video
 
-https://user-images.githubusercontent.com/99032604/199139166-84b8a1cc-c6ad-424a-90e0-ee2c2bcb3696.mp4
+https://github.com/DiegoLibonati/Menu-Page/assets/99032604/78f2dd9c-d02a-41ee-9a31-a496b0ba8de7
 
 ## Documentation
 
