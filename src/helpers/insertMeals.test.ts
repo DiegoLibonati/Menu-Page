@@ -16,6 +16,10 @@ beforeEach(() => {
   document.body.innerHTML = INITIAL_HTML;
 });
 
+afterEach(() => {
+  document.body.innerHTML = "";
+});
+
 test("It must render inside mealContainer the amount of elements that we pass by parameters to insertMeals.", () => {
   const newMeals = meals.slice(0, 3);
 

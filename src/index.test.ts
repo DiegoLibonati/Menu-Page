@@ -1,20 +1,11 @@
-import { IndexStateTest } from "./entities/test";
+import { screen } from "@testing-library/dom";
 
-import { insertMeals } from "./helpers/insertMeals";
 import { meals } from "./constants/mealData";
 import { breakfasts } from "./constants/breakfastData";
 import { lunchs } from "./constants/lunchData";
 import { shakes } from "./constants/shakeData";
 
-const INDEX_STATE_TEST: IndexStateTest = {
-  testElements: {
-    mealContainer: null,
-    btnAll: null,
-    btnBreakfast: null,
-    btnLunch: null,
-    btnShakes: null,
-  },
-};
+import { getByClassName } from "./tests/helpers/getByClassName";
 
 const INITIAL_HTML: string = `
   <main class="w-full h-full min-h-screen bg-[#F9F1F0]">
@@ -29,24 +20,28 @@ const INITIAL_HTML: string = `
           <button
             class="border-[#FADCD9] border-2 border-solid rounded-lg p-2 mx-2 cursor-pointer hover:opacity-75 active:scale-75 transition-all"
             id="all"
+            aria-label="all filter meal"
           >
             All
           </button>
           <button
             class="border-[#FADCD9] border-2 border-solid rounded-lg p-2 mx-2 cursor-pointer hover:opacity-75 active:scale-75 transition-all"
             id="breakfast"
+            aria-label="breakfast filter meal"
           >
             Breakfast
           </button>
           <button
             class="border-[#FADCD9] border-2 border-solid rounded-lg p-2 mx-2 cursor-pointer hover:opacity-75 active:scale-75 transition-all"
             id="lunch"
+            aria-label="lunch filter meal"
           >
             Lunch
           </button>
           <button
             class="border-[#FADCD9] border-2 border-solid rounded-lg p-2 mx-2 cursor-pointer hover:opacity-75 active:scale-75 transition-all"
             id="shakes"
+            aria-label="shakes filter meal"
           >
             Shakes
           </button>
@@ -61,61 +56,38 @@ const INITIAL_HTML: string = `
 `;
 
 beforeEach(() => {
+  jest.resetModules();
   document.body.innerHTML = INITIAL_HTML;
-
-  // Elements
-  const testElements = INDEX_STATE_TEST.testElements!;
-
-  testElements.mealContainer = document.querySelector(
-    ".meals_container"
-  ) as HTMLElement;
-
-  testElements.btnAll = document.getElementById("all") as HTMLButtonElement;
-  testElements.btnBreakfast = document.getElementById(
-    "breakfast"
-  ) as HTMLButtonElement;
-  testElements.btnLunch = document.getElementById("lunch") as HTMLButtonElement;
-  testElements.btnShakes = document.getElementById(
-    "shakes"
-  ) as HTMLButtonElement;
-
-  const onInit = () => {
-    insertMeals(meals, testElements.mealContainer!);
-  };
-
-  window.addEventListener("DOMContentLoaded", () => {
-    onInit();
-
-    testElements.btnAll?.addEventListener("click", () =>
-      insertMeals(meals, testElements.mealContainer!)
-    );
-    testElements.btnBreakfast?.addEventListener("click", () =>
-      insertMeals(breakfasts, testElements.mealContainer!)
-    );
-    testElements.btnLunch?.addEventListener("click", () =>
-      insertMeals(lunchs, testElements.mealContainer!)
-    );
-    testElements.btnShakes?.addEventListener("click", () =>
-      insertMeals(shakes, testElements.mealContainer!)
-    );
-  });
-
+  require("./index.ts");
   window.dispatchEvent(new Event("DOMContentLoaded"));
 });
 
+afterEach(() => {
+  document.body.innerHTML = "";
+});
+
 test("It should render all meals after the DOMContentLoaded is run.", () => {
-  const mealContainer = INDEX_STATE_TEST.testElements.mealContainer;
+  const mealContainer = getByClassName("article", "meals_container");
 
   expect(mealContainer).toBeInTheDocument();
   expect(mealContainer?.children).toHaveLength(meals.length);
 });
 
 test("It must call the insertElements function when the meals filter buttons are clicked.", () => {
-  const mealContainer = INDEX_STATE_TEST.testElements.mealContainer;
-  const btnAll = INDEX_STATE_TEST.testElements.btnAll;
-  const btnBreakfast = INDEX_STATE_TEST.testElements.btnBreakfast;
-  const btnLunch = INDEX_STATE_TEST.testElements.btnLunch;
-  const btnShakes = INDEX_STATE_TEST.testElements.btnShakes;
+  const mealContainer = getByClassName("article", "meals_container")!;
+
+  const btnAll = screen.getByRole("button", {
+    name: /all filter meal/i,
+  });
+  const btnBreakfast = screen.getByRole("button", {
+    name: /breakfast filter meal/i,
+  });
+  const btnLunch = screen.getByRole("button", {
+    name: /lunch filter meal/i,
+  });
+  const btnShakes = screen.getByRole("button", {
+    name: /shakes filter meal/i,
+  });
 
   expect(mealContainer).toBeInTheDocument();
   expect(btnAll).toBeInTheDocument();
@@ -123,19 +95,19 @@ test("It must call the insertElements function when the meals filter buttons are
   expect(btnLunch).toBeInTheDocument();
   expect(btnShakes).toBeInTheDocument();
 
-  btnAll?.click();
+  btnAll.click();
 
-  expect(mealContainer?.children).toHaveLength(meals.length);
+  expect(mealContainer.children).toHaveLength(meals.length);
 
-  btnBreakfast?.click();
+  btnBreakfast.click();
 
-  expect(mealContainer?.children).toHaveLength(breakfasts.length);
+  expect(mealContainer.children).toHaveLength(breakfasts.length);
 
-  btnLunch?.click();
+  btnLunch.click();
 
-  expect(mealContainer?.children).toHaveLength(lunchs.length);
+  expect(mealContainer.children).toHaveLength(lunchs.length);
 
-  btnShakes?.click();
+  btnShakes.click();
 
-  expect(mealContainer?.children).toHaveLength(shakes.length);
+  expect(mealContainer.children).toHaveLength(shakes.length);
 });
