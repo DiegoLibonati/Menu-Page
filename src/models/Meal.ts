@@ -1,4 +1,4 @@
-export class Food {
+export class Meal {
   constructor(
     public name: string,
     public amount: string,
@@ -35,7 +35,10 @@ export class Food {
     h2.textContent = this.name;
 
     const h3 = document.createElement("h3");
-    h3.setAttribute("class", "rounded-lg p-1 bg-[#F9F1F0] text-sm font-semibold");
+    h3.setAttribute(
+      "class",
+      "rounded-lg p-1 bg-[#F9F1F0] text-sm font-semibold"
+    );
     h3.textContent = this.amount;
 
     div3.append(h2);

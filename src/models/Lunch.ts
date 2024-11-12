@@ -1,6 +1,6 @@
-import { Food } from "./Food";
+import { Meal } from "./Meal";
 
-export class Breakfast extends Food {
+export class Lunch extends Meal {
   constructor(name: string, amount: string, description: string, img: string) {
     super(name, amount, description, img);
   }
