@@ -1,3 +1,4 @@
+import "@testing-library/jest-dom";
 import { screen, within } from "@testing-library/dom";
 
 import { Meal } from "./Meal";

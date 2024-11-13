@@ -1,3 +1,4 @@
+import "@testing-library/jest-dom";
 import { getByClassName } from "./getByClassName";
 
 const INITIAL_HTML = `

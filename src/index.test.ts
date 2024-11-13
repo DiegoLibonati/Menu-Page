@@ -1,4 +1,8 @@
+import "@testing-library/jest-dom";
 import { screen } from "@testing-library/dom";
+
+import fs from "fs";
+import path from "path";
 
 import { meals } from "./constants/mealData";
 import { breakfasts } from "./constants/breakfastData";
@@ -7,57 +11,16 @@ import { shakes } from "./constants/shakeData";
 
 import { getByClassName } from "./tests/helpers/getByClassName";
 
-const INITIAL_HTML: string = `
-  <main class="w-full h-full min-h-screen bg-[#F9F1F0]">
-    <section class="flex flex-col items-center justify-center w-full h-full">
-      <article class="flex flex-col items-center justify-center w-full">
-        <div class="flex flex-col items-center justify-center mt-6">
-          <h1 class="text-4xl">Our Menu</h1>
-          <div class="w-24 h-1 rounded-lg bg-[#FADCD9]"></div>
-        </div>
-
-        <div class="flex flex-row mt-6">
-          <button
-            class="border-[#FADCD9] border-2 border-solid rounded-lg p-2 mx-2 cursor-pointer hover:opacity-75 active:scale-75 transition-all"
-            id="all"
-            aria-label="all filter meal"
-          >
-            All
-          </button>
-          <button
-            class="border-[#FADCD9] border-2 border-solid rounded-lg p-2 mx-2 cursor-pointer hover:opacity-75 active:scale-75 transition-all"
-            id="breakfast"
-            aria-label="breakfast filter meal"
-          >
-            Breakfast
-          </button>
-          <button
-            class="border-[#FADCD9] border-2 border-solid rounded-lg p-2 mx-2 cursor-pointer hover:opacity-75 active:scale-75 transition-all"
-            id="lunch"
-            aria-label="lunch filter meal"
-          >
-            Lunch
-          </button>
-          <button
-            class="border-[#FADCD9] border-2 border-solid rounded-lg p-2 mx-2 cursor-pointer hover:opacity-75 active:scale-75 transition-all"
-            id="shakes"
-            aria-label="shakes filter meal"
-          >
-            Shakes
-          </button>
-        </div>
-      </article>
-
-      <article
-        class="flex flex-row flex-wrap items-center justify-center mt-6 meals_container"
-      ></article>
-    </section>
-  </main>
-`;
+const INITIAL_HTML: string = fs.readFileSync(
+  path.resolve(__dirname, "../index.html"),
+  "utf8"
+);
 
 beforeEach(() => {
   jest.resetModules();
-  document.body.innerHTML = INITIAL_HTML;
+  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
+
+  document.body.innerHTML = body;
   require("./index.ts");
   document.dispatchEvent(new Event("DOMContentLoaded"));
 });
