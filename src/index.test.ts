@@ -59,7 +59,7 @@ beforeEach(() => {
   jest.resetModules();
   document.body.innerHTML = INITIAL_HTML;
   require("./index.ts");
-  window.dispatchEvent(new Event("DOMContentLoaded"));
+  document.dispatchEvent(new Event("DOMContentLoaded"));
 });
 
 afterEach(() => {

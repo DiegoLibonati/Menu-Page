@@ -165,10 +165,6 @@ When the DOM is fully loaded all the meals will be displayed and then each butto
 ```
 const onInit = () => {
   insertMeals(meals, mealContainer);
-};
-
-window.addEventListener("DOMContentLoaded", () => {
-  onInit();
 
   btnAll.addEventListener("click", () => insertMeals(meals, mealContainer));
 
@@ -179,5 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
   btnLunch.addEventListener("click", () => insertMeals(lunchs, mealContainer));
 
   btnShakes.addEventListener("click", () => insertMeals(shakes, mealContainer));
-});
+};
+
+document.addEventListener("DOMContentLoaded", onInit);
 ```
