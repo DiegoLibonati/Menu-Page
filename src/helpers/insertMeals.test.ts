@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { screen } from "@testing-library/dom";
 
 import { meals } from "../constants/mealData";
