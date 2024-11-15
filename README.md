@@ -32,14 +32,20 @@ I made a web page that allows you to see a food menu. This menu has different bu
 
 ## Libraries used
 
-1. postcss
-2. autoprefixer
-3. @testing-library/dom
-4. @testing-library/jest-dom
-5. @types/jest
-6. jest
-7. jest-environment-jsdom
-8. ts-jest
+```
+"@testing-library/dom": "^10.4.0",
+"@testing-library/jest-dom": "^6.6.3",
+"@types/jest": "^29.5.14",
+"jest": "^29.7.0",
+"jest-environment-jsdom": "^29.7.0",
+"ts-jest": "^29.2.5",
+"typescript": "^5.2.2",
+"vite": "^5.0.8"
+
+"autoprefixer": "^10.4.17",
+"postcss": "^8.4.35",
+"tailwindcss": "^3.4.1"
+```
 
 ## Portfolio Link
 
