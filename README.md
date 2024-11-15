@@ -32,19 +32,25 @@ I made a web page that allows you to see a food menu. This menu has different bu
 
 ## Libraries used
 
+#### Dependencies
+
+```
+"@types/jest": "^29.5.14"
+```
+
+#### devDependencies
+
 ```
 "@testing-library/dom": "^10.4.0",
 "@testing-library/jest-dom": "^6.6.3",
-"@types/jest": "^29.5.14",
 "jest": "^29.7.0",
-"jest-environment-jsdom": "^29.7.0",
 "ts-jest": "^29.2.5",
 "typescript": "^5.2.2",
-"vite": "^5.0.8"
-
+"tailwindcss": "^3.4.1",
 "autoprefixer": "^10.4.17",
 "postcss": "^8.4.35",
-"tailwindcss": "^3.4.1"
+"jest-environment-jsdom": "^29.7.0",
+"vite": "^5.0.8"
 ```
 
 ## Portfolio Link
