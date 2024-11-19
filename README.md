@@ -43,6 +43,7 @@ I made a web page that allows you to see a food menu. This menu has different bu
 ```
 "@testing-library/dom": "^10.4.0"
 "@testing-library/jest-dom": "^6.6.3"
+ "@testing-library/user-event": "^14.5.2"
 "jest": "^29.7.0"
 "ts-jest": "^29.2.5"
 "typescript": "^5.2.2"

@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import user from "@testing-library/user-event";
 
 import fs from "fs";
 import path from "path";
@@ -35,7 +36,7 @@ test("It should render all meals after the DOMContentLoaded is run.", () => {
   expect(mealContainer?.children).toHaveLength(meals.length);
 });
 
-test("It must call the insertElements function when the meals filter buttons are clicked.", () => {
+test("It must call the insertElements function when the meals filter buttons are clicked.", async () => {
   const mealContainer = getByClassName("article", "meals_container")!;
 
   const btnAll = screen.getByRole("button", {
@@ -57,19 +58,19 @@ test("It must call the insertElements function when the meals filter buttons are
   expect(btnLunch).toBeInTheDocument();
   expect(btnShakes).toBeInTheDocument();
 
-  btnAll.click();
+  await user.click(btnAll);
 
   expect(mealContainer.children).toHaveLength(meals.length);
 
-  btnBreakfast.click();
+  await user.click(btnBreakfast);
 
   expect(mealContainer.children).toHaveLength(breakfasts.length);
 
-  btnLunch.click();
+  await user.click(btnLunch);
 
   expect(mealContainer.children).toHaveLength(lunchs.length);
 
-  btnShakes.click();
+  await user.click(btnShakes);
 
   expect(mealContainer.children).toHaveLength(shakes.length);
 });
