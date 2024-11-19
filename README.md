@@ -41,15 +41,16 @@ I made a web page that allows you to see a food menu. This menu has different bu
 #### devDependencies
 
 ```
-"@testing-library/dom": "^10.4.0",
-"@testing-library/jest-dom": "^6.6.3",
-"jest": "^29.7.0",
-"ts-jest": "^29.2.5",
-"typescript": "^5.2.2",
-"tailwindcss": "^3.4.1",
-"autoprefixer": "^10.4.17",
-"postcss": "^8.4.35",
-"jest-environment-jsdom": "^29.7.0",
+"@testing-library/dom": "^10.4.0"
+"@testing-library/jest-dom": "^6.6.3"
+"jest": "^29.7.0"
+"ts-jest": "^29.2.5"
+"typescript": "^5.2.2"
+"tailwindcss": "^3.4.1"
+"autoprefixer": "^10.4.17"
+"postcss": "^8.4.35"
+"jest-environment-jsdom": "^29.7.0"
+"jest-fixed-jsdom": "^0.0.9"
 "vite": "^5.0.8"
 ```
 

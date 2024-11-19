@@ -12,8 +12,6 @@ import { lunchs } from "./constants/lunchData";
 import { shakes } from "./constants/shakeData";
 import { meals } from "./constants/mealData";
 
-import "./styles.css";
-
 const onInit = () => {
   insertMeals(meals, mealContainer);
 
