@@ -53,4 +53,4 @@ https://github.com/DiegoLibonati/Menu-Page/assets/99032604/78f2dd9c-d02a-41ee-9a
 ## Testing
 
 1. Join to the correct path of the clone
-2. Execute: `yarn test`
+2. Execute: `yarn test` or `npm test`
