@@ -1,16 +1,9 @@
 import { getElements } from "./getElements";
 
-import fs from "fs";
-import path from "path";
-
-const INITIAL_HTML: string = fs.readFileSync(
-  path.resolve(__dirname, "../../index.html"),
-  "utf8"
-);
+import { OFFICIAL_BODY } from "../tests/jest.setup";
 
 beforeEach(() => {
-  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
-  document.body.innerHTML = body;
+  document.body.innerHTML = OFFICIAL_BODY;
 });
 
 afterEach(() => {

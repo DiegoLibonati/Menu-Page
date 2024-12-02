@@ -1,19 +1,12 @@
 import { screen } from "@testing-library/dom";
 
-import fs from "fs";
-import path from "path";
-
-import { meals } from "../constants/mealData";
 import { insertMeals } from "./insertMeals";
+import { meals } from "../constants/mealData";
 
-const INITIAL_HTML: string = fs.readFileSync(
-  path.resolve(__dirname, "../../index.html"),
-  "utf8"
-);
+import { OFFICIAL_BODY } from "../tests/jest.setup";
 
 beforeEach(() => {
-  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
-  document.body.innerHTML = body;
+  document.body.innerHTML = OFFICIAL_BODY;
 });
 
 afterEach(() => {

@@ -1,27 +1,19 @@
 import { screen } from "@testing-library/dom";
 import user from "@testing-library/user-event";
 
-import fs from "fs";
-import path from "path";
-
 import { meals } from "./constants/mealData";
 import { breakfasts } from "./constants/breakfastData";
 import { lunchs } from "./constants/lunchData";
 import { shakes } from "./constants/shakeData";
 
 import { getByClassName } from "./tests/helpers/getByClassName";
-
-const INITIAL_HTML: string = fs.readFileSync(
-  path.resolve(__dirname, "../index.html"),
-  "utf8"
-);
+import { OFFICIAL_BODY } from "./tests/jest.setup";
 
 beforeEach(() => {
   jest.resetModules();
 
-  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
-  document.body.innerHTML = body;
-  
+  document.body.innerHTML = OFFICIAL_BODY;
+
   require("./index.ts");
   document.dispatchEvent(new Event("DOMContentLoaded"));
 });
