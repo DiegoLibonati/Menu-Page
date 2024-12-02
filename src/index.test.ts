@@ -10,8 +10,7 @@ import { getByClassName } from "./tests/helpers/getByClassName";
 import { OFFICIAL_BODY } from "./tests/jest.setup";
 
 beforeEach(() => {
-  jest.resetModules();
-
+ 
   document.body.innerHTML = OFFICIAL_BODY;
 
   require("./index.ts");
