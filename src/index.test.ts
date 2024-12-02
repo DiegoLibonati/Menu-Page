@@ -18,9 +18,10 @@ const INITIAL_HTML: string = fs.readFileSync(
 
 beforeEach(() => {
   jest.resetModules();
-  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
 
+  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
   document.body.innerHTML = body;
+  
   require("./index.ts");
   document.dispatchEvent(new Event("DOMContentLoaded"));
 });
