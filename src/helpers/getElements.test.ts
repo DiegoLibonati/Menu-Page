@@ -1,38 +1,15 @@
 import { getElements } from "./getElements";
 
-const INITIAL_HTML: string = `
-    <main>
-        <article class="meals_container"></article>
-        <button
-            id="all"
-            aria-label="all filter meal"
-        >
-            All
-        </button>
-        <button
-            id="breakfast"
-            aria-label="breakfast filter meal"
-        >
-            Breakfast
-        </button>
-        <button
-            id="lunch"
-            aria-label="lunch filter meal"
-        >
-            Lunch
-        </button>
-        <button
-            id="shakes"
-            aria-label="shakes filter meal"
-        >
-            Shakes
-        </button>
-    </main>
-`;
+import fs from "fs";
+import path from "path";
+
+const INITIAL_HTML: string = fs.readFileSync(
+  path.resolve(__dirname, "../../index.html"),
+  "utf8"
+);
 
 beforeEach(() => {
-  const body = INITIAL_HTML;
-
+  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
   document.body.innerHTML = body;
 });
 
