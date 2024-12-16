@@ -38,7 +38,6 @@ I made a web page that allows you to see a food menu. This menu has different bu
 "autoprefixer": "^10.4.17"
 "postcss": "^8.4.35"
 "jest-environment-jsdom": "^29.7.0"
-"jest-fixed-jsdom": "^0.0.9"
 "vite": "^5.0.8"
 ```
 
