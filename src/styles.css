@@ -1,9 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-font: "Roboto", Helvetica, sans-serif;
+  --base-font-size: 0.625rem;
+  --primary-color: #f9f1f0;
+  --secondary-color: #fadcd9;
+  --white-color: #ffffff;
+  --black-color: #000000;
+}
 
-*{
-    font-family: "Roboto", Helvetica, sans-serif;
+* {
+  font-family: var(--primary-font);
 }

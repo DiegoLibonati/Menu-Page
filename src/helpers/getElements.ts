@@ -1,5 +1,5 @@
 export const getElements = () => ({
-  mealContainer: document.querySelector(".meals_container") as HTMLElement,
+  mealContainer: document.querySelector(".meals") as HTMLElement,
   btnAll: document.getElementById("all") as HTMLButtonElement,
   btnBreakfast: document.getElementById("breakfast") as HTMLButtonElement,
   btnLunch: document.getElementById("lunch") as HTMLButtonElement,

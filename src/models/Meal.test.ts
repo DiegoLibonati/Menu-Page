@@ -23,7 +23,7 @@ describe("Food Class", () => {
 
     expect(card).toBeInTheDocument();
     expect(card).toHaveClass(
-      "flex flex-col w-full max-w-96 h-96 bg-[#FADCD9] m-2 rounded-b-lg"
+      "flex flex-col w-full max-w-96 h-96 bg-secondary m-2 rounded-b-lg"
     );
 
     const img = within(card).getByRole("img");

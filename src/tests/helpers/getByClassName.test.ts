@@ -13,26 +13,30 @@ const INITIAL_HTML = `
 const EXISTING_CLASS = "test2";
 const NO_EXISTING_CLASS = "test4";
 
-beforeEach(() => {
-  document.body.innerHTML = INITIAL_HTML;
-});
+describe("getByClassName.ts", () => {
+  describe("General Tests.", () => {
+    beforeEach(() => {
+      document.body.innerHTML = INITIAL_HTML;
+    });
 
-afterEach(() => {
-  document.body.innerHTML = "";
-});
+    afterEach(() => {
+      document.body.innerHTML = "";
+    });
 
-test("It must return an html element with a specific class and a specific role.", () => {
-  const element = getByClassName("article", EXISTING_CLASS);
+    test("It must return an html element with a specific class and a specific role.", () => {
+      const element = getByClassName("article", EXISTING_CLASS);
 
-  expect(element).toBeTruthy();
-  expect(element).toBeInTheDocument();
-  expect(element).toHaveClass(EXISTING_CLASS);
-});
+      expect(element).toBeTruthy();
+      expect(element).toBeInTheDocument();
+      expect(element).toHaveClass(EXISTING_CLASS);
+    });
 
-test("It Must NOT return an html element, must return null.", () => {
-  const element = getByClassName("article", NO_EXISTING_CLASS);
+    test("It Must NOT return an html element, must return null.", () => {
+      const element = getByClassName("article", NO_EXISTING_CLASS);
 
-  expect(element).toBe(null);
-  expect(element).toBeFalsy();
-  expect(element).not.toBeInTheDocument();
+      expect(element).toBe(null);
+      expect(element).toBeFalsy();
+      expect(element).not.toBeInTheDocument();
+    });
+  });
 });

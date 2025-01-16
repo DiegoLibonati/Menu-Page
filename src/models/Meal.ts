@@ -10,7 +10,7 @@ export class Meal {
     const div = document.createElement("div");
     div.setAttribute(
       "class",
-      "flex flex-col w-full max-w-96 h-96 bg-[#FADCD9] m-2 rounded-b-lg"
+      "flex flex-col w-full max-w-96 h-96 bg-secondary m-2 rounded-b-lg"
     );
 
     const img = document.createElement("img");
@@ -35,10 +35,7 @@ export class Meal {
     h2.textContent = this.name;
 
     const h3 = document.createElement("h3");
-    h3.setAttribute(
-      "class",
-      "rounded-lg p-1 bg-[#F9F1F0] text-sm font-semibold"
-    );
+    h3.setAttribute("class", "rounded-lg p-1 bg-primary text-sm font-semibold");
     h3.textContent = this.amount;
 
     div3.append(h2);

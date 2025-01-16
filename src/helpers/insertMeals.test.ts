@@ -3,28 +3,32 @@ import { screen } from "@testing-library/dom";
 import { insertMeals } from "./insertMeals";
 import { meals } from "../constants/mealData";
 
-import { OFFICIAL_BODY } from "../tests/jest.setup";
+import { OFFICIAL_BODY } from "../tests/jest.constants";
 
-beforeEach(() => {
-  document.body.innerHTML = OFFICIAL_BODY;
-});
+describe("insertMeals.ts", () => {
+  describe("General Tests.", () => {
+    beforeEach(() => {
+      document.body.innerHTML = OFFICIAL_BODY;
+    });
 
-afterEach(() => {
-  document.body.innerHTML = "";
-});
+    afterEach(() => {
+      document.body.innerHTML = "";
+    });
 
-test("It must render inside mealContainer the amount of elements that we pass by parameters to insertMeals.", () => {
-  const newMeals = meals.slice(0, 3);
+    test("It must render inside mealContainer the amount of elements that we pass by parameters to insertMeals.", () => {
+      const newMeals = meals.slice(0, 3);
 
-  const articles = screen.getAllByRole("article");
-  const mealContainer = articles.find((article) =>
-    article.classList.contains("meals_container")
-  ) as HTMLElement;
+      const articles = screen.getAllByRole("article");
+      const mealContainer = articles.find((article) =>
+        article.classList.contains("meals")
+      ) as HTMLElement;
 
-  expect(mealContainer).toBeInTheDocument();
-  expect(mealContainer).toHaveClass("meals_container");
+      expect(mealContainer).toBeInTheDocument();
+      expect(mealContainer).toHaveClass("meals");
 
-  insertMeals(newMeals, mealContainer);
+      insertMeals(newMeals, mealContainer);
 
-  expect(mealContainer!.children).toHaveLength(newMeals.length);
+      expect(mealContainer!.children).toHaveLength(newMeals.length);
+    });
+  });
 });
