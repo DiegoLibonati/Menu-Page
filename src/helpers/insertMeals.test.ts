@@ -3,7 +3,7 @@ import { screen } from "@testing-library/dom";
 import { insertMeals } from "./insertMeals";
 import { meals } from "../constants/mealData";
 
-import { OFFICIAL_BODY } from "../tests/jest.constants";
+import { OFFICIAL_BODY } from "../../tests/jest.constants";
 
 describe("insertMeals.ts", () => {
   describe("General Tests.", () => {

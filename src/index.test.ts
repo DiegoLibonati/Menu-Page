@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/dom";
 import user from "@testing-library/user-event";
 
-import { OFFICIAL_BODY } from "./tests/jest.constants";
-import { getByClassName } from "./tests/helpers/getByClassName";
+import { OFFICIAL_BODY } from "../tests/jest.constants";
+import { getByClassName } from "../tests/helpers/getByClassName";
 
 import { meals } from "./constants/mealData";
 import { breakfasts } from "./constants/breakfastData";
