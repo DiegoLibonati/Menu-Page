@@ -1,9 +1,10 @@
 import { screen } from "@testing-library/dom";
 
-import { insertMeals } from "./insertMeals";
-import { meals } from "../constants/mealData";
+import { OFFICIAL_BODY } from "@tests/jest.constants";
 
-import { OFFICIAL_BODY } from "../../tests/jest.constants";
+import { insertMeals } from "@src/helpers/insertMeals";
+
+import { meals } from "@src/constants/mealData";
 
 describe("insertMeals.ts", () => {
   describe("General Tests.", () => {

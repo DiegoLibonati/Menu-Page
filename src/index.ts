@@ -1,10 +1,10 @@
-import { insertMeals } from "./helpers/insertMeals";
-import { getElements } from "./helpers/getElements";
+import { insertMeals } from "@src/helpers/insertMeals";
+import { getElements } from "@src/helpers/getElements";
 
-import { breakfasts } from "./constants/breakfastData";
-import { lunchs } from "./constants/lunchData";
-import { shakes } from "./constants/shakeData";
-import { meals } from "./constants/mealData";
+import { breakfasts } from "@src/constants/breakfastData";
+import { lunchs } from "@src/constants/lunchData";
+import { shakes } from "@src/constants/shakeData";
+import { meals } from "@src/constants/mealData";
 
 const onInit = () => {
   const { btnAll, btnBreakfast, btnLunch, btnShakes, mealContainer } =

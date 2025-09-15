@@ -1,4 +1,4 @@
-import { Shake } from "./Shake";
+import { Shake } from "@src/models/Shake";
 
 const SHAKE = {
   name: "Breakfast super-shake",

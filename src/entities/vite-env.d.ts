@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 
-import { Breakfast } from "../models/Breakfast";
-import { Lunch } from "../models/Lunch";
-import { Shake } from "../models/Shake";
+import { Breakfast } from "@src/models/Breakfast";
+import { Lunch } from "@src/models/Lunch";
+import { Shake } from "@src/models/Shake";
 
 // Types
 

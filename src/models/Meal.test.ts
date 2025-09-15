@@ -1,8 +1,8 @@
 import { screen, within } from "@testing-library/dom";
 
-import { Meal } from "./Meal";
+import { Meal } from "@src/models/Meal";
 
-import { meals } from "../constants/mealData";
+import { meals } from "@src/constants/mealData";
 
 const MEAL = meals[0];
 

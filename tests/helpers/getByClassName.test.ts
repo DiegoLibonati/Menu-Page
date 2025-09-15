@@ -1,4 +1,4 @@
-import { getByClassName } from "./getByClassName";
+import { getByClassName } from "@tests/helpers/getByClassName";
 
 const INITIAL_HTML = `
     <main>

@@ -1,5 +1,11 @@
 # Menu-Page
 
+## Educational Purpose
+
+This project was created primarily for **educational and learning purposes**.  
+While it is well-structured and could technically be used in production, it is **not intended for commercialization**.  
+The main goal is to explore and demonstrate best practices, patterns, and technologies in software development.
+
 ## Getting Started
 
 1. Clone the repository
@@ -10,6 +16,7 @@
 ## Description
 
 I made a web page that allows you to see a food menu. This menu has different buttons and depending on which button we touch it will bring us that type of food. If we tap on All, it will bring up all the meals again. I made this page with POO.
+
 
 ## Technologies used
 
@@ -40,8 +47,9 @@ There are no dependencies.
 "postcss": "^8.4.35"
 "tailwindcss": "^3.4.1"
 "ts-jest": "^29.2.5"
+"ts-node": "^10.9.2"
 "typescript": "^5.2.2"
-"vite": "^5.0.8"
+"vite": "^7.1.5"
 ```
 
 ## Portfolio Link
@@ -56,3 +64,5 @@ https://github.com/DiegoLibonati/Menu-Page/assets/99032604/78f2dd9c-d02a-41ee-9a
 
 1. Join to the correct path of the clone
 2. Execute: `yarn test` or `npm test`
+
+## Known Issues

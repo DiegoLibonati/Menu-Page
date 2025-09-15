@@ -1,4 +1,4 @@
-import { Lunch } from "./Lunch";
+import { Lunch } from "@src/models/Lunch";
 
 const LUNCH = {
   name: "Big-batch bolognese",

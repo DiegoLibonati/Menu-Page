@@ -1,4 +1,4 @@
-import { Lunch } from "../models/Lunch";
+import { Lunch } from "@src/models/Lunch";
 
 export const lunchs = [
   new Lunch(

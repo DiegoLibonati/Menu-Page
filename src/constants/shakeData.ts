@@ -1,4 +1,4 @@
-import { Shake } from "../models/Shake";
+import { Shake } from "@src/models/Shake";
 
 export const shakes = [
   new Shake(

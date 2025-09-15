@@ -1,13 +1,13 @@
 import { screen } from "@testing-library/dom";
 import user from "@testing-library/user-event";
 
-import { OFFICIAL_BODY } from "../tests/jest.constants";
-import { getByClassName } from "../tests/helpers/getByClassName";
+import { OFFICIAL_BODY } from "@tests/jest.constants";
+import { getByClassName } from "@tests/helpers/getByClassName";
 
-import { meals } from "./constants/mealData";
-import { breakfasts } from "./constants/breakfastData";
-import { lunchs } from "./constants/lunchData";
-import { shakes } from "./constants/shakeData";
+import { meals } from "@src/constants/mealData";
+import { breakfasts } from "@src/constants/breakfastData";
+import { lunchs } from "@src/constants/lunchData";
+import { shakes } from "@src/constants/shakeData";
 
 describe("index.ts", () => {
   describe("General Tests.", () => {
