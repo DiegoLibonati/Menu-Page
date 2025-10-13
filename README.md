@@ -23,7 +23,8 @@ I made a web page that allows you to see a food menu. This menu has different bu
 1. Typescript
 2. TailwindCSS
 3. HTML5
-4. Vite
+4. CSS3
+5. Vite
 
 ## Libraries used
 
