@@ -1,7 +1,7 @@
 import { ButtonFilter } from "@src/components/ButtonFilter/ButtonFilter";
 import { CardMeal } from "@src/components/CardMeal/CardMeal";
 
-import meals from "@src/constants/meals";
+import { mealStore } from "@src/stores/mealStore";
 
 export const MenuPage = (): HTMLElement => {
   const main = document.createElement("main");
@@ -25,7 +25,6 @@ export const MenuPage = (): HTMLElement => {
   `;
 
   const filters = main.querySelector<HTMLDivElement>(".filters");
-  const sectionMeals = main.querySelector<HTMLElement>(".meals");
 
   const filterAll = ButtonFilter({
     id: "all",
@@ -50,16 +49,27 @@ export const MenuPage = (): HTMLElement => {
 
   filters?.append(filterAll, filterBreakfast, filterLunch, filterShake);
 
-  meals.forEach((meal) => {
-    const cardMeal = CardMeal({
-      amount: meal.amount,
-      description: meal.description,
-      imgSrc: meal.imgSrc,
-      name: meal.name,
-    });
+  const renderMeals = () => {
+    const { meals } = mealStore.getState();
 
-    sectionMeals?.append(cardMeal);
-  });
+    const sectionMeals = main.querySelector<HTMLElement>(".meals");
+    sectionMeals?.replaceChildren();
+
+    meals.forEach((meal) => {
+      const cardMeal = CardMeal({
+        amount: meal.amount,
+        description: meal.description,
+        imgSrc: meal.imgSrc,
+        name: meal.name,
+      });
+
+      sectionMeals?.append(cardMeal);
+    });
+  };
+
+  renderMeals();
+
+  mealStore.subscribe("meals", renderMeals);
 
   return main;
 };

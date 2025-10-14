@@ -1,37 +1,10 @@
 import { ButtonFilterProps } from "@src/entities/props";
 import { FilterId } from "@src/entities/app";
 
-import { CardMeal } from "@src/components/CardMeal/CardMeal";
-
-import breakfasts from "@src/constants/breakfasts";
-import allMeals from "@src/constants/meals";
-import lunchs from "@src/constants/lunchs";
-import shakes from "@src/constants/shakes";
+import { mealStore } from "@src/stores/mealStore";
 
 const onClick = (id: FilterId) => {
-  const mealsElement = document.querySelector<HTMLElement>(".meals");
-
-  mealsElement?.replaceChildren();
-
-  const meals =
-    id === "breakfast"
-      ? breakfasts
-      : id === "lunch"
-      ? lunchs
-      : id === "shakes"
-      ? shakes
-      : allMeals;
-
-  meals.forEach((meal) => {
-    const cardMeal = CardMeal({
-      amount: meal.amount,
-      description: meal.description,
-      imgSrc: meal.imgSrc,
-      name: meal.name,
-    });
-
-    mealsElement?.append(cardMeal);
-  });
+  mealStore.setCurrentFilter(id);
 };
 
 export const ButtonFilter = ({
