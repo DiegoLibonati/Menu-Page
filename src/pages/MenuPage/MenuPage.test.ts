@@ -50,7 +50,10 @@ describe("MenuPage", () => {
   describe("Header Tests.", () => {
     test("It should render the title 'Our Menu'", () => {
       renderComponent();
-      const title = screen.getByRole("heading", { name: /our menu/i, level: 1 });
+      const title = screen.getByRole("heading", {
+        name: /our menu/i,
+        level: 1,
+      });
 
       expect(title).toBeInTheDocument();
       expect(title.className).toContain("text-4xl");
@@ -93,7 +96,9 @@ describe("MenuPage", () => {
 
     test("It should render 'All' filter button with correct attributes", () => {
       renderComponent();
-      const allButton = screen.getByRole("button", { name: /all filter meal/i });
+      const allButton = screen.getByRole("button", {
+        name: /all filter meal/i,
+      });
 
       expect(allButton).toBeInTheDocument();
       expect(allButton.id).toBe("all");
@@ -147,25 +152,25 @@ describe("MenuPage", () => {
   describe("Meals Section Tests.", () => {
     test("It should render an article element for meals with 'meals' class", () => {
       const { container } = renderComponent();
-      const mealsArticle = container.querySelector("article.meals");
+      const mealsSection = container.querySelector("section.meals");
 
-      expect(mealsArticle).toBeInTheDocument();
-      expect(mealsArticle?.className).toContain("flex");
-      expect(mealsArticle?.className).toContain("flex-wrap");
+      expect(mealsSection).toBeInTheDocument();
+      expect(mealsSection?.className).toContain("flex");
+      expect(mealsSection?.className).toContain("flex-wrap");
     });
 
     test("It should render all meal cards from meals constant", () => {
       const { container } = renderComponent();
-      const mealsArticle = container.querySelector("article.meals");
-      const cards = mealsArticle?.querySelectorAll(".card-meal");
+      const mealsSection = container.querySelector("section.meals");
+      const cards = mealsSection?.querySelectorAll(".card-meal");
 
       expect(cards?.length).toBe(meals.length);
     });
 
     test("It should render the first meal card with correct content", () => {
       const { container } = renderComponent();
-      const mealsArticle = container.querySelector("article.meals");
-      const firstCard = mealsArticle?.querySelector(".card-meal");
+      const mealsSection = container.querySelector("section.meals");
+      const firstCard = mealsSection?.querySelector(".card-meal");
 
       const h2 = firstCard?.querySelector("h2");
       const h3 = firstCard?.querySelector("h3");
@@ -180,8 +185,8 @@ describe("MenuPage", () => {
 
     test("It should render the last meal card with correct content", () => {
       const { container } = renderComponent();
-      const mealsArticle = container.querySelector("article.meals");
-      const cards = mealsArticle?.querySelectorAll(".card-meal");
+      const mealsSection = container.querySelector("section.meals");
+      const cards = mealsSection?.querySelectorAll(".card-meal");
       const lastCard = cards?.[cards.length - 1];
 
       const h2 = lastCard?.querySelector("h2");
@@ -202,11 +207,11 @@ describe("MenuPage", () => {
       const articleHeader = section?.querySelector("article");
       expect(articleHeader).toBeTruthy();
 
-      const articleMeals = section?.querySelector("article.meals");
-      expect(articleMeals).toBeTruthy();
+      const mealsSection = container?.querySelector("section.meals");
+      expect(mealsSection).toBeTruthy();
 
       const articles = section?.querySelectorAll("article");
-      expect(articles?.length).toBe(2);
+      expect(articles?.length).toBe(1);
     });
 
     test("It should have filters container as child of header article", () => {
@@ -229,11 +234,11 @@ describe("MenuPage", () => {
       const breakfastButton = screen.getByRole("button", {
         name: /breakfast filter meal/i,
       });
-      const mealsArticle = container.querySelector("article.meals");
+      const mealsSection = container.querySelector("section.meals");
 
       await user.click(breakfastButton);
 
-      const cards = mealsArticle?.querySelectorAll(".card-meal");
+      const cards = mealsSection?.querySelectorAll(".card-meal");
       expect(cards?.length).toBe(breakfasts.length);
 
       const firstCardTitle = cards?.[0].querySelector("h2");
@@ -245,11 +250,11 @@ describe("MenuPage", () => {
       const lunchButton = screen.getByRole("button", {
         name: /lunch filter meal/i,
       });
-      const mealsArticle = container.querySelector("article.meals");
+      const mealsSection = container.querySelector("section.meals");
 
       await user.click(lunchButton);
 
-      const cards = mealsArticle?.querySelectorAll(".card-meal");
+      const cards = mealsSection?.querySelectorAll(".card-meal");
       expect(cards?.length).toBe(lunchs.length);
     });
 
@@ -258,11 +263,11 @@ describe("MenuPage", () => {
       const shakesButton = screen.getByRole("button", {
         name: /shakes filter/i,
       });
-      const mealsArticle = container.querySelector("article.meals");
+      const mealsSection = container.querySelector("section.meals");
 
       await user.click(shakesButton);
 
-      const cards = mealsArticle?.querySelectorAll(".card-meal");
+      const cards = mealsSection?.querySelectorAll(".card-meal");
       expect(cards?.length).toBe(shakes.length);
     });
 
@@ -271,13 +276,15 @@ describe("MenuPage", () => {
       const breakfastButton = screen.getByRole("button", {
         name: /breakfast filter meal/i,
       });
-      const allButton = screen.getByRole("button", { name: /all filter meal/i });
-      const mealsArticle = container.querySelector("article.meals");
+      const allButton = screen.getByRole("button", {
+        name: /all filter meal/i,
+      });
+      const mealsSection = container.querySelector("section.meals");
 
       await user.click(breakfastButton);
       await user.click(allButton);
 
-      const cards = mealsArticle?.querySelectorAll(".card-meal");
+      const cards = mealsSection?.querySelectorAll(".card-meal");
       expect(cards?.length).toBe(meals.length);
     });
 
@@ -286,11 +293,11 @@ describe("MenuPage", () => {
       const lunchButton = screen.getByRole("button", {
         name: /lunch filter meal/i,
       });
-      const mealsArticle = container.querySelector("article.meals");
+      const mealsSection = container.querySelector("section.meals");
 
       await user.click(lunchButton);
 
-      const cards = mealsArticle?.querySelectorAll(".card-meal");
+      const cards = mealsSection?.querySelectorAll(".card-meal");
       const firstCardTitle = cards?.[0].querySelector("h2");
 
       expect(firstCardTitle?.textContent).toBe(lunchs[0].name);
@@ -304,14 +311,16 @@ describe("MenuPage", () => {
       const shakesButton = screen.getByRole("button", {
         name: /shakes filter/i,
       });
-      const allButton = screen.getByRole("button", { name: /all filter meal/i });
-      const mealsArticle = container.querySelector("article.meals");
+      const allButton = screen.getByRole("button", {
+        name: /all filter meal/i,
+      });
+      const mealsSection = container.querySelector("section.meals");
 
       await user.click(breakfastButton);
       await user.click(shakesButton);
       await user.click(allButton);
 
-      const cards = mealsArticle?.querySelectorAll(".card-meal");
+      const cards = mealsSection?.querySelectorAll(".card-meal");
       const firstCardTitle = cards?.[0].querySelector("h2");
 
       expect(cards?.length).toBe(meals.length);

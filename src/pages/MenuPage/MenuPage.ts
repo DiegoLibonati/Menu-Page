@@ -7,24 +7,25 @@ export const MenuPage = (): HTMLElement => {
   const main = document.createElement("main");
   main.className = "w-full h-full min-h-screen bg-primary";
 
-  const section = document.createElement("section");
-  section.className = "flex flex-col items-center justify-center w-full h-full";
+  main.innerHTML = `
+    <section class="flex flex-col items-center justify-center w-full h-full">
+      <article class="flex flex-col items-center justify-center w-full">
+        <div class="flex flex-col items-center justify-center mt-6">
+          <h1 class="text-4xl">Our Menu</h1>
+          <div class="w-24 h-1 rounded-lg bg-secondary"></div>
+        </div>
 
-  const articleHeader = document.createElement("article");
-  articleHeader.className = "flex flex-col items-center justify-center w-full";
+        <div class="flex flex-row mt-6 filters">
+        </div>
+      </article>
+    </section>
 
-  const divTitle = document.createElement("div");
-  divTitle.className = "flex flex-col items-center justify-center mt-6";
+    <section class="flex flex-row flex-wrap items-center justify-center mt-6 meals">
+    </section>
+  `;
 
-  const title = document.createElement("h1");
-  title.className = "text-4xl";
-  title.textContent = "Our Menu";
-
-  const divLine = document.createElement("div");
-  divLine.className = "w-24 h-1 rounded-lg bg-secondary";
-
-  const divFilters = document.createElement("div");
-  divFilters.className = "flex flex-row mt-6";
+  const filters = main.querySelector<HTMLDivElement>(".filters");
+  const sectionMeals = main.querySelector<HTMLElement>(".meals");
 
   const filterAll = ButtonFilter({
     id: "all",
@@ -47,9 +48,7 @@ export const MenuPage = (): HTMLElement => {
     text: "Shakes",
   });
 
-  const articleMeals = document.createElement("article");
-  articleMeals.className =
-    "flex flex-row flex-wrap items-center justify-center mt-6 meals";
+  filters?.append(filterAll, filterBreakfast, filterLunch, filterShake);
 
   meals.forEach((meal) => {
     const cardMeal = CardMeal({
@@ -59,24 +58,8 @@ export const MenuPage = (): HTMLElement => {
       name: meal.name,
     });
 
-    articleMeals.append(cardMeal);
+    sectionMeals?.append(cardMeal);
   });
-
-  divTitle.append(title);
-  divTitle.append(divLine);
-
-  divFilters.append(filterAll);
-  divFilters.append(filterBreakfast);
-  divFilters.append(filterLunch);
-  divFilters.append(filterShake);
-
-  articleHeader.append(divTitle);
-  articleHeader.append(divFilters);
-
-  section.append(articleHeader);
-  section.append(articleMeals);
-
-  main.append(section);
 
   return main;
 };

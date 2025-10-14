@@ -15,7 +15,7 @@ The main goal is to explore and demonstrate best practices, patterns, and techno
 
 ## Description
 
-I made a web page that allows you to see a food menu. This menu has different buttons and depending on which button we touch it will bring us that type of food. If we tap on All, it will bring up all the meals again. I made this page with POO.
+I made a web page that allows you to see a food menu. This menu has different buttons and depending on which button we touch it will bring us that type of food. If we tap on All, it will bring up all the meals again.
 
 
 ## Technologies used
