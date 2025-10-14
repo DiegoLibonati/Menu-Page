@@ -36,7 +36,7 @@ const renderComponent = (
   };
 };
 
-describe("CardMeal", () => {
+describe("CardMeal.ts", () => {
   afterEach(() => {
     document.body.innerHTML = "";
   });

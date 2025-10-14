@@ -43,7 +43,7 @@ const renderComponent = (
   };
 };
 
-describe("ButtonFilter", () => {
+describe("ButtonFilter.ts", () => {
   beforeEach(() => {
     mealStore.setCurrentFilter("all");
   });

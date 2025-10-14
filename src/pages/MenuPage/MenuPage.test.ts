@@ -18,7 +18,7 @@ const renderComponent = (): HTMLElement => {
   return container;
 };
 
-describe("MenuPage", () => {
+describe("MenuPage.ts", () => {
   beforeEach(() => {
     mealStore.setCurrentFilter("all");
   });
