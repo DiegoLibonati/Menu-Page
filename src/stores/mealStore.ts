@@ -1,7 +1,7 @@
 import { FilterId } from "@src/entities/app";
 import { MealState } from "@src/entities/states";
 
-import { Store } from "@src/stores/store";
+import { Store } from "@src/core/store";
 
 import allMeals from "@src/constants/meals";
 import breakfasts from "@src/constants/breakfasts";
