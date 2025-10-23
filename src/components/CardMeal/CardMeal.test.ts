@@ -90,7 +90,10 @@ describe("CardMeal.ts", () => {
         describeProps.name
       );
 
-      const heading = screen.getByRole("heading", { name: props.name, level: 2 });
+      const heading = screen.getByRole("heading", {
+        name: props.name,
+        level: 2,
+      });
 
       expect(heading).toBeInTheDocument();
       expect(heading).toBeInstanceOf(HTMLHeadingElement);
@@ -140,7 +143,7 @@ describe("CardMeal.ts", () => {
         describeProps.name
       );
 
-      const cardMeal = document.querySelector(".card-meal");
+      const cardMeal = document.querySelector<HTMLDivElement>(".card-meal");
 
       expect(cardMeal).toBeInTheDocument();
       expect(cardMeal).toBe(container);
@@ -156,25 +159,25 @@ describe("CardMeal.ts", () => {
         "Test Meal"
       );
 
-      const img = container.querySelector("img");
+      const img = container.querySelector<HTMLImageElement>("img");
       expect(img).toBeTruthy();
 
-      const contentDiv = container.querySelector(
+      const contentDiv = container.querySelector<HTMLDivElement>(
         "div.flex.flex-col.items-start"
       );
       expect(contentDiv).toBeTruthy();
 
-      const headerDiv = contentDiv?.querySelector(
+      const headerDiv = contentDiv?.querySelector<HTMLDivElement>(
         "div.flex.flex-row.items-center"
       );
       expect(headerDiv).toBeTruthy();
 
-      const h2 = headerDiv?.querySelector("h2");
-      const h3 = headerDiv?.querySelector("h3");
+      const h2 = headerDiv?.querySelector<HTMLHeadingElement>("h2");
+      const h3 = headerDiv?.querySelector<HTMLHeadingElement>("h3");
       expect(h2).toBeTruthy();
       expect(h3).toBeTruthy();
 
-      const p = contentDiv?.querySelector("p");
+      const p = contentDiv?.querySelector<HTMLParagraphElement>("p");
       expect(p).toBeTruthy();
     });
 
@@ -211,9 +214,10 @@ describe("CardMeal.ts", () => {
         "Test Meal"
       );
 
-      const headerDiv = container.querySelector("div.flex.flex-row");
-      const h2 = headerDiv?.querySelector("h2");
-      const h3 = headerDiv?.querySelector("h3");
+      const headerDiv =
+        container.querySelector<HTMLDivElement>("div.flex.flex-row");
+      const h2 = headerDiv?.querySelector<HTMLHeadingElement>("h2");
+      const h3 = headerDiv?.querySelector<HTMLHeadingElement>("h3");
 
       expect(h2?.parentElement).toBe(headerDiv);
       expect(h3?.parentElement).toBe(headerDiv);
@@ -225,9 +229,15 @@ describe("CardMeal.ts", () => {
       const { container } = renderComponent("", "", "", "");
 
       expect(container).toBeInstanceOf(HTMLDivElement);
-      expect(container.querySelector("h2")?.textContent).toBe("");
-      expect(container.querySelector("h3")?.textContent).toBe("");
-      expect(container.querySelector("p")?.textContent).toBe("");
+      expect(
+        container.querySelector<HTMLHeadingElement>("h2")?.textContent
+      ).toBe("");
+      expect(
+        container.querySelector<HTMLHeadingElement>("h3")?.textContent
+      ).toBe("");
+      expect(
+        container.querySelector<HTMLParagraphElement>("p")?.textContent
+      ).toBe("");
     });
 
     test("It should handle long text content", () => {
@@ -288,7 +298,7 @@ describe("CardMeal.ts", () => {
           `Test Meal ${imgPath}`
         );
 
-        const img = container.querySelector("img");
+        const img = container.querySelector<HTMLImageElement>("img");
         expect(img?.src).toContain(imgPath);
       });
     });
@@ -308,12 +318,7 @@ describe("CardMeal.ts", () => {
     });
 
     test("It should have proper heading hierarchy", () => {
-      renderComponent(
-        "$9.99",
-        "Delicious meal",
-        "/img.jpg",
-        "Meal Name"
-      );
+      renderComponent("$9.99", "Delicious meal", "/img.jpg", "Meal Name");
 
       const h2 = screen.getByRole("heading", { level: 2 });
       const h3 = screen.getByRole("heading", { level: 3 });
@@ -363,7 +368,7 @@ describe("CardMeal.ts", () => {
 
       expect(container.className).toContain("rounded-b-lg");
 
-      const img = container.querySelector("img");
+      const img = container.querySelector<HTMLImageElement>("img");
       expect(img?.className).toContain("rounded-t-lg");
     });
 
@@ -375,7 +380,7 @@ describe("CardMeal.ts", () => {
         "Test"
       );
 
-      const img = container.querySelector("img");
+      const img = container.querySelector<HTMLImageElement>("img");
       expect(img?.className).toContain("h-[65%]");
     });
 
@@ -389,7 +394,9 @@ describe("CardMeal.ts", () => {
 
       expect(container.className).toContain("m-2");
 
-      const contentDiv = container.querySelector("div.flex.flex-col.items-start");
+      const contentDiv = container.querySelector<HTMLDivElement>(
+        "div.flex.flex-col.items-start"
+      );
       expect(contentDiv?.className).toContain("px-2");
     });
   });

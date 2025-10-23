@@ -51,7 +51,7 @@ describe("MenuPage.ts", () => {
     test("It should render sections with correct structure", () => {
       const { container } = renderComponent();
 
-      const sections = container.querySelectorAll("section");
+      const sections = container.querySelectorAll<HTMLElement>("section");
       expect(sections.length).toBe(2);
     });
 
@@ -66,7 +66,8 @@ describe("MenuPage.ts", () => {
     test("It should render decorative underline", () => {
       const { container } = renderComponent();
 
-      const underline = container.querySelector(".bg-secondary");
+      const underline =
+        container.querySelector<HTMLDivElement>(".bg-secondary");
       expect(underline).toBeInTheDocument();
       expect(underline?.className).toContain("w-24");
       expect(underline?.className).toContain("h-1");
@@ -109,10 +110,12 @@ describe("MenuPage.ts", () => {
     test("It should render filter buttons with correct ids", () => {
       const { container } = renderComponent();
 
-      const allButton = container.querySelector("#all");
-      const breakfastButton = container.querySelector("#breakfast");
-      const lunchButton = container.querySelector("#lunch");
-      const shakesButton = container.querySelector("#shakes");
+      const allButton = container.querySelector<HTMLButtonElement>("#all");
+      const breakfastButton =
+        container.querySelector<HTMLButtonElement>("#breakfast");
+      const lunchButton = container.querySelector<HTMLButtonElement>("#lunch");
+      const shakesButton =
+        container.querySelector<HTMLButtonElement>("#shakes");
 
       expect(allButton).toBeInTheDocument();
       expect(breakfastButton).toBeInTheDocument();
@@ -123,8 +126,10 @@ describe("MenuPage.ts", () => {
     test("It should render filters inside filters container", () => {
       const { container } = renderComponent();
 
-      const filtersContainer = container.querySelector(".filters");
-      const buttons = filtersContainer?.querySelectorAll("button");
+      const filtersContainer =
+        container.querySelector<HTMLDivElement>(".filters");
+      const buttons =
+        filtersContainer?.querySelectorAll<HTMLButtonElement>("button");
 
       expect(buttons?.length).toBe(4);
     });
@@ -134,8 +139,9 @@ describe("MenuPage.ts", () => {
     test("It should render all meals initially", () => {
       const { container } = renderComponent();
 
-      const mealsSection = container.querySelector(".meals");
-      const cards = mealsSection?.querySelectorAll(".card-meal");
+      const mealsSection = container.querySelector<HTMLElement>(".meals");
+      const cards =
+        mealsSection?.querySelectorAll<HTMLDivElement>(".card-meal");
 
       expect(cards?.length).toBe(allMeals.length);
     });
@@ -151,7 +157,7 @@ describe("MenuPage.ts", () => {
     test("It should render meals inside meals section", () => {
       const { container } = renderComponent();
 
-      const mealsSection = container.querySelector(".meals");
+      const mealsSection = container.querySelector<HTMLElement>(".meals");
       expect(mealsSection).toBeInTheDocument();
       expect(mealsSection?.children.length).toBeGreaterThan(0);
     });
@@ -159,11 +165,11 @@ describe("MenuPage.ts", () => {
     test("It should render meal cards with all required elements", () => {
       const { container } = renderComponent();
 
-      const firstCard = container.querySelector(".card-meal");
-      const img = firstCard?.querySelector("img");
-      const name = firstCard?.querySelector("h2");
-      const amount = firstCard?.querySelector("h3");
-      const description = firstCard?.querySelector("p");
+      const firstCard = container.querySelector<HTMLDivElement>(".card-meal");
+      const img = firstCard?.querySelector<HTMLImageElement>("img");
+      const name = firstCard?.querySelector<HTMLHeadingElement>("h2");
+      const amount = firstCard?.querySelector<HTMLHeadingElement>("h3");
+      const description = firstCard?.querySelector<HTMLParagraphElement>("p");
 
       expect(img).toBeInTheDocument();
       expect(name).toBeInTheDocument();
@@ -181,7 +187,7 @@ describe("MenuPage.ts", () => {
       });
       await user.click(breakfastButton);
 
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(cards.length).toBe(breakfasts.length);
     });
 
@@ -193,7 +199,7 @@ describe("MenuPage.ts", () => {
       });
       await user.click(lunchButton);
 
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(cards.length).toBe(lunchs.length);
     });
 
@@ -205,7 +211,7 @@ describe("MenuPage.ts", () => {
       });
       await user.click(shakesButton);
 
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(cards.length).toBe(shakes.length);
     });
 
@@ -222,7 +228,7 @@ describe("MenuPage.ts", () => {
       });
       await user.click(allButton);
 
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(cards.length).toBe(allMeals.length);
     });
   });
@@ -287,22 +293,22 @@ describe("MenuPage.ts", () => {
 
       mealStore.setCurrentFilter("breakfast");
 
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(cards.length).toBe(breakfasts.length);
     });
 
     test("It should update meals when store state changes externally", () => {
       const { container } = renderComponent();
 
-      expect(container.querySelectorAll(".card-meal").length).toBe(
-        allMeals.length
-      );
+      expect(
+        container.querySelectorAll<HTMLDivElement>(".card-meal").length
+      ).toBe(allMeals.length);
 
       mealStore.setCurrentFilter("lunch");
 
-      expect(container.querySelectorAll(".card-meal").length).toBe(
-        lunchs.length
-      );
+      expect(
+        container.querySelectorAll<HTMLDivElement>(".card-meal").length
+      ).toBe(lunchs.length);
     });
 
     test("It should maintain subscription to store", async () => {
@@ -312,25 +318,25 @@ describe("MenuPage.ts", () => {
         name: /breakfast filter meal/i,
       });
       await user.click(breakfastButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(
-        breakfasts.length
-      );
+      expect(
+        container.querySelectorAll<HTMLDivElement>(".card-meal").length
+      ).toBe(breakfasts.length);
 
       const lunchButton = screen.getByRole("button", {
         name: /lunch filter meal/i,
       });
       await user.click(lunchButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(
-        lunchs.length
-      );
+      expect(
+        container.querySelectorAll<HTMLDivElement>(".card-meal").length
+      ).toBe(lunchs.length);
 
       const shakesButton = screen.getByRole("button", {
         name: /shakes filter meal/i,
       });
       await user.click(shakesButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(
-        shakes.length
-      );
+      expect(
+        container.querySelectorAll<HTMLDivElement>(".card-meal").length
+      ).toBe(shakes.length);
     });
   });
 
@@ -342,25 +348,25 @@ describe("MenuPage.ts", () => {
         name: /breakfast filter meal/i,
       });
       await user.click(breakfastButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(
-        breakfasts.length
-      );
+      expect(
+        container.querySelectorAll<HTMLDivElement>(".card-meal").length
+      ).toBe(breakfasts.length);
 
       const lunchButton = screen.getByRole("button", {
         name: /lunch filter meal/i,
       });
       await user.click(lunchButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(
-        lunchs.length
-      );
+      expect(
+        container.querySelectorAll<HTMLDivElement>(".card-meal").length
+      ).toBe(lunchs.length);
 
       const allButton = screen.getByRole("button", {
         name: /all filter meal/i,
       });
       await user.click(allButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(
-        allMeals.length
-      );
+      expect(
+        container.querySelectorAll<HTMLDivElement>(".card-meal").length
+      ).toBe(allMeals.length);
     });
 
     test("It should clear previous meals before rendering new ones", async () => {
@@ -371,7 +377,8 @@ describe("MenuPage.ts", () => {
       });
       await user.click(breakfastButton);
 
-      const firstFilterCards = container.querySelectorAll(".card-meal");
+      const firstFilterCards =
+        container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(firstFilterCards.length).toBe(breakfasts.length);
 
       const lunchButton = screen.getByRole("button", {
@@ -379,7 +386,8 @@ describe("MenuPage.ts", () => {
       });
       await user.click(lunchButton);
 
-      const secondFilterCards = container.querySelectorAll(".card-meal");
+      const secondFilterCards =
+        container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(secondFilterCards.length).toBe(lunchs.length);
       expect(secondFilterCards.length).not.toBe(firstFilterCards.length);
     });
@@ -395,7 +403,7 @@ describe("MenuPage.ts", () => {
       await user.click(breakfastButton);
       await user.click(breakfastButton);
 
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(cards.length).toBe(breakfasts.length);
     });
 
@@ -416,7 +424,7 @@ describe("MenuPage.ts", () => {
       await user.click(lunchButton);
       await user.click(shakesButton);
 
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(cards.length).toBe(shakes.length);
     });
   });
@@ -425,7 +433,7 @@ describe("MenuPage.ts", () => {
     test("It should have correct section structure", () => {
       const { container } = renderComponent();
 
-      const sections = container.querySelectorAll("section");
+      const sections = container.querySelectorAll<HTMLElement>("section");
       expect(sections.length).toBe(2);
 
       const firstSection = sections[0];
@@ -438,7 +446,8 @@ describe("MenuPage.ts", () => {
     test("It should have filters container with correct styling", () => {
       const { container } = renderComponent();
 
-      const filtersContainer = container.querySelector(".filters");
+      const filtersContainer =
+        container.querySelector<HTMLDivElement>(".filters");
       expect(filtersContainer).toBeInTheDocument();
       expect(filtersContainer?.className).toContain("flex");
       expect(filtersContainer?.className).toContain("flex-row");
@@ -448,7 +457,7 @@ describe("MenuPage.ts", () => {
     test("It should have meals section with correct styling", () => {
       const { container } = renderComponent();
 
-      const mealsSection = container.querySelector(".meals");
+      const mealsSection = container.querySelector<HTMLElement>(".meals");
       expect(mealsSection).toBeInTheDocument();
       expect(mealsSection?.className).toContain("flex");
       expect(mealsSection?.className).toContain("flex-row");
@@ -465,8 +474,9 @@ describe("MenuPage.ts", () => {
       });
       await user.click(lunchButton);
 
-      const filtersContainer = container.querySelector(".filters");
-      const mealsSection = container.querySelector(".meals");
+      const filtersContainer =
+        container.querySelector<HTMLDivElement>(".filters");
+      const mealsSection = container.querySelector<HTMLElement>(".meals");
 
       expect(filtersContainer).toBeInTheDocument();
       expect(mealsSection).toBeInTheDocument();
@@ -479,7 +489,7 @@ describe("MenuPage.ts", () => {
       mealStore.setState({ meals: [] });
 
       const { container } = renderComponent();
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
 
       expect(cards.length).toBe(0);
 
@@ -491,7 +501,7 @@ describe("MenuPage.ts", () => {
       mealStore.setState({ meals: singleMeal });
 
       const { container } = renderComponent();
-      const cards = container.querySelectorAll(".card-meal");
+      const cards = container.querySelectorAll<HTMLDivElement>(".card-meal");
 
       expect(cards.length).toBe(1);
 
@@ -511,8 +521,9 @@ describe("MenuPage.ts", () => {
       await user.click(breakfastButton);
       await user.click(lunchButton);
 
-      const mealsSection = container.querySelector(".meals");
-      const cards = mealsSection?.querySelectorAll(".card-meal");
+      const mealsSection = container.querySelector<HTMLElement>(".meals");
+      const cards =
+        mealsSection?.querySelectorAll<HTMLDivElement>(".card-meal");
 
       expect(cards?.length).toBe(lunchs.length);
     });
@@ -545,14 +556,16 @@ describe("MenuPage.ts", () => {
       const { container } = renderComponent();
 
       expect(container.tagName).toBe("MAIN");
-      expect(container.querySelector("h1")).toBeInTheDocument();
-      expect(container.querySelectorAll("section").length).toBe(2);
+      expect(
+        container.querySelector<HTMLHeadingElement>("h1")
+      ).toBeInTheDocument();
+      expect(container.querySelectorAll<HTMLElement>("section").length).toBe(2);
     });
 
     test("It should have accessible meal cards with images", () => {
       const { container } = renderComponent();
 
-      const images = container.querySelectorAll("img");
+      const images = container.querySelectorAll<HTMLImageElement>("img");
       images.forEach((img) => {
         expect(img).toHaveAttribute("alt");
       });
@@ -578,7 +591,7 @@ describe("MenuPage.ts", () => {
   describe("Performance and memory", () => {
     test("It should replace children efficiently without memory leaks", async () => {
       const { container } = renderComponent();
-      const mealsSection = container.querySelector(".meals");
+      const mealsSection = container.querySelector<HTMLElement>(".meals");
 
       const breakfastButton = screen.getByRole("button", {
         name: /breakfast filter meal/i,
@@ -600,7 +613,7 @@ describe("MenuPage.ts", () => {
       mealStore.setCurrentFilter("lunch");
       mealStore.setCurrentFilter("shakes");
 
-      const cards = document.querySelectorAll(".card-meal");
+      const cards = document.querySelectorAll<HTMLDivElement>(".card-meal");
       expect(cards.length).toBe(shakes.length);
     });
   });
