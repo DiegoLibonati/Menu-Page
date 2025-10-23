@@ -12,10 +12,14 @@ import lunchs from "@src/constants/lunchs";
 import shakes from "@src/constants/shakes";
 import allMeals from "@src/constants/meals";
 
-const renderComponent = (): HTMLElement => {
+type RenderComponent = {
+  container: HTMLElement;
+};
+
+const renderComponent = (): RenderComponent => {
   const container = MenuPage();
   document.body.appendChild(container);
-  return container;
+  return { container: container };
 };
 
 describe("MenuPage.ts", () => {
@@ -29,14 +33,14 @@ describe("MenuPage.ts", () => {
 
   describe("General Tests.", () => {
     test("It should create a main element", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       expect(container).toBeInstanceOf(HTMLElement);
       expect(container.tagName).toBe("MAIN");
     });
 
     test("It should have correct styling classes", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       expect(container.className).toContain("w-full");
       expect(container.className).toContain("h-full");
@@ -45,7 +49,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should render sections with correct structure", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const sections = container.querySelectorAll("section");
       expect(sections.length).toBe(2);
@@ -60,7 +64,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should render decorative underline", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const underline = container.querySelector(".bg-secondary");
       expect(underline).toBeInTheDocument();
@@ -74,10 +78,18 @@ describe("MenuPage.ts", () => {
     test("It should render all filter buttons", () => {
       renderComponent();
 
-      const allButton = screen.getByRole("button", { name: /all filter meal/i });
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
-      const shakesButton = screen.getByRole("button", { name: /shakes filter meal/i });
+      const allButton = screen.getByRole("button", {
+        name: /all filter meal/i,
+      });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
+      const shakesButton = screen.getByRole("button", {
+        name: /shakes filter meal/i,
+      });
 
       expect(allButton).toBeInTheDocument();
       expect(breakfastButton).toBeInTheDocument();
@@ -95,7 +107,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should render filter buttons with correct ids", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const allButton = container.querySelector("#all");
       const breakfastButton = container.querySelector("#breakfast");
@@ -109,7 +121,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should render filters inside filters container", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const filtersContainer = container.querySelector(".filters");
       const buttons = filtersContainer?.querySelectorAll("button");
@@ -120,7 +132,7 @@ describe("MenuPage.ts", () => {
 
   describe("Initial meals rendering", () => {
     test("It should render all meals initially", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const mealsSection = container.querySelector(".meals");
       const cards = mealsSection?.querySelectorAll(".card-meal");
@@ -137,7 +149,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should render meals inside meals section", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const mealsSection = container.querySelector(".meals");
       expect(mealsSection).toBeInTheDocument();
@@ -145,7 +157,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should render meal cards with all required elements", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const firstCard = container.querySelector(".card-meal");
       const img = firstCard?.querySelector("img");
@@ -162,9 +174,11 @@ describe("MenuPage.ts", () => {
 
   describe("Filter functionality", () => {
     test("It should filter to breakfast meals when breakfast button is clicked", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
       await user.click(breakfastButton);
 
       const cards = container.querySelectorAll(".card-meal");
@@ -172,9 +186,11 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should filter to lunch meals when lunch button is clicked", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
       await user.click(lunchButton);
 
       const cards = container.querySelectorAll(".card-meal");
@@ -182,9 +198,11 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should filter to shake meals when shakes button is clicked", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const shakesButton = screen.getByRole("button", { name: /shakes filter meal/i });
+      const shakesButton = screen.getByRole("button", {
+        name: /shakes filter meal/i,
+      });
       await user.click(shakesButton);
 
       const cards = container.querySelectorAll(".card-meal");
@@ -192,12 +210,16 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should show all meals when all button is clicked", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
       await user.click(breakfastButton);
 
-      const allButton = screen.getByRole("button", { name: /all filter meal/i });
+      const allButton = screen.getByRole("button", {
+        name: /all filter meal/i,
+      });
       await user.click(allButton);
 
       const cards = container.querySelectorAll(".card-meal");
@@ -209,7 +231,9 @@ describe("MenuPage.ts", () => {
     test("It should display correct breakfast meal names when filtered", async () => {
       renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
       await user.click(breakfastButton);
 
       breakfasts.forEach((meal) => {
@@ -220,7 +244,9 @@ describe("MenuPage.ts", () => {
     test("It should display correct lunch meal names when filtered", async () => {
       renderComponent();
 
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
       await user.click(lunchButton);
 
       lunchs.forEach((meal) => {
@@ -231,7 +257,9 @@ describe("MenuPage.ts", () => {
     test("It should display correct shake meal names when filtered", async () => {
       renderComponent();
 
-      const shakesButton = screen.getByRole("button", { name: /shakes filter meal/i });
+      const shakesButton = screen.getByRole("button", {
+        name: /shakes filter meal/i,
+      });
       await user.click(shakesButton);
 
       shakes.forEach((meal) => {
@@ -242,7 +270,9 @@ describe("MenuPage.ts", () => {
     test("It should not display breakfast meals when lunch is filtered", async () => {
       renderComponent();
 
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
       await user.click(lunchButton);
 
       breakfasts.forEach((meal) => {
@@ -253,7 +283,7 @@ describe("MenuPage.ts", () => {
 
   describe("Store integration", () => {
     test("It should react to store changes", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       mealStore.setCurrentFilter("breakfast");
 
@@ -262,59 +292,91 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should update meals when store state changes externally", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      expect(container.querySelectorAll(".card-meal").length).toBe(allMeals.length);
+      expect(container.querySelectorAll(".card-meal").length).toBe(
+        allMeals.length
+      );
 
       mealStore.setCurrentFilter("lunch");
 
-      expect(container.querySelectorAll(".card-meal").length).toBe(lunchs.length);
+      expect(container.querySelectorAll(".card-meal").length).toBe(
+        lunchs.length
+      );
     });
 
     test("It should maintain subscription to store", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
       await user.click(breakfastButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(breakfasts.length);
+      expect(container.querySelectorAll(".card-meal").length).toBe(
+        breakfasts.length
+      );
 
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
       await user.click(lunchButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(lunchs.length);
+      expect(container.querySelectorAll(".card-meal").length).toBe(
+        lunchs.length
+      );
 
-      const shakesButton = screen.getByRole("button", { name: /shakes filter meal/i });
+      const shakesButton = screen.getByRole("button", {
+        name: /shakes filter meal/i,
+      });
       await user.click(shakesButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(shakes.length);
+      expect(container.querySelectorAll(".card-meal").length).toBe(
+        shakes.length
+      );
     });
   });
 
   describe("Multiple filter interactions", () => {
     test("It should handle switching between different filters", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
       await user.click(breakfastButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(breakfasts.length);
+      expect(container.querySelectorAll(".card-meal").length).toBe(
+        breakfasts.length
+      );
 
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
       await user.click(lunchButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(lunchs.length);
+      expect(container.querySelectorAll(".card-meal").length).toBe(
+        lunchs.length
+      );
 
-      const allButton = screen.getByRole("button", { name: /all filter meal/i });
+      const allButton = screen.getByRole("button", {
+        name: /all filter meal/i,
+      });
       await user.click(allButton);
-      expect(container.querySelectorAll(".card-meal").length).toBe(allMeals.length);
+      expect(container.querySelectorAll(".card-meal").length).toBe(
+        allMeals.length
+      );
     });
 
     test("It should clear previous meals before rendering new ones", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
       await user.click(breakfastButton);
 
       const firstFilterCards = container.querySelectorAll(".card-meal");
       expect(firstFilterCards.length).toBe(breakfasts.length);
 
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
       await user.click(lunchButton);
 
       const secondFilterCards = container.querySelectorAll(".card-meal");
@@ -323,9 +385,11 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should handle clicking the same filter multiple times", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
 
       await user.click(breakfastButton);
       await user.click(breakfastButton);
@@ -336,11 +400,17 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should handle rapid filter changes", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
-      const shakesButton = screen.getByRole("button", { name: /shakes filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
+      const shakesButton = screen.getByRole("button", {
+        name: /shakes filter meal/i,
+      });
 
       await user.click(breakfastButton);
       await user.click(lunchButton);
@@ -353,7 +423,7 @@ describe("MenuPage.ts", () => {
 
   describe("Layout structure", () => {
     test("It should have correct section structure", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const sections = container.querySelectorAll("section");
       expect(sections.length).toBe(2);
@@ -366,7 +436,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should have filters container with correct styling", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const filtersContainer = container.querySelector(".filters");
       expect(filtersContainer).toBeInTheDocument();
@@ -376,7 +446,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should have meals section with correct styling", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const mealsSection = container.querySelector(".meals");
       expect(mealsSection).toBeInTheDocument();
@@ -388,9 +458,11 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should maintain structure after filtering", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
       await user.click(lunchButton);
 
       const filtersContainer = container.querySelector(".filters");
@@ -406,7 +478,7 @@ describe("MenuPage.ts", () => {
       const originalMeals = mealStore.getState().meals;
       mealStore.setState({ meals: [] });
 
-      const container = renderComponent();
+      const { container } = renderComponent();
       const cards = container.querySelectorAll(".card-meal");
 
       expect(cards.length).toBe(0);
@@ -418,7 +490,7 @@ describe("MenuPage.ts", () => {
       const singleMeal: Meal[] = [allMeals[0]];
       mealStore.setState({ meals: singleMeal });
 
-      const container = renderComponent();
+      const { container } = renderComponent();
       const cards = container.querySelectorAll(".card-meal");
 
       expect(cards.length).toBe(1);
@@ -427,10 +499,14 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should maintain only one set of meals after multiple filters", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
 
       await user.click(breakfastButton);
       await user.click(lunchButton);
@@ -446,10 +522,18 @@ describe("MenuPage.ts", () => {
     test("It should have accessible filter buttons", () => {
       renderComponent();
 
-      const allButton = screen.getByRole("button", { name: /all filter meal/i });
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
-      const lunchButton = screen.getByRole("button", { name: /lunch filter meal/i });
-      const shakesButton = screen.getByRole("button", { name: /shakes filter meal/i });
+      const allButton = screen.getByRole("button", {
+        name: /all filter meal/i,
+      });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
+      const lunchButton = screen.getByRole("button", {
+        name: /lunch filter meal/i,
+      });
+      const shakesButton = screen.getByRole("button", {
+        name: /shakes filter meal/i,
+      });
 
       expect(allButton).toHaveAttribute("aria-label");
       expect(breakfastButton).toHaveAttribute("aria-label");
@@ -458,7 +542,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should have semantic HTML structure", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       expect(container.tagName).toBe("MAIN");
       expect(container.querySelector("h1")).toBeInTheDocument();
@@ -466,7 +550,7 @@ describe("MenuPage.ts", () => {
     });
 
     test("It should have accessible meal cards with images", () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
 
       const images = container.querySelectorAll("img");
       images.forEach((img) => {
@@ -493,10 +577,12 @@ describe("MenuPage.ts", () => {
 
   describe("Performance and memory", () => {
     test("It should replace children efficiently without memory leaks", async () => {
-      const container = renderComponent();
+      const { container } = renderComponent();
       const mealsSection = container.querySelector(".meals");
 
-      const breakfastButton = screen.getByRole("button", { name: /breakfast filter meal/i });
+      const breakfastButton = screen.getByRole("button", {
+        name: /breakfast filter meal/i,
+      });
       await user.click(breakfastButton);
 
       const childrenAfterFirst = mealsSection?.children.length;
