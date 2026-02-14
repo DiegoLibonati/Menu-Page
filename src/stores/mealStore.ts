@@ -1,27 +1,27 @@
-import { FilterId } from "@src/entities/app";
-import { MealState } from "@src/entities/states";
+import type { FilterId } from "@/types/app";
+import type { MealState } from "@/types/states";
 
-import { Store } from "@src/core/store";
+import { Store } from "@/core/store";
 
-import allMeals from "@src/constants/meals";
-import breakfasts from "@src/constants/breakfasts";
-import lunchs from "@src/constants/lunchs";
-import shakes from "@src/constants/shakes";
+import allMeals from "@/constants/meals";
+import breakfasts from "@/constants/breakfasts";
+import lunchs from "@/constants/lunchs";
+import shakes from "@/constants/shakes";
 
 export class MealStore extends Store<MealState> {
-  constructor(initialState: MealState) {
-    super(initialState);
-  }
+  // constructor(initialState: MealState) {
+  //   super(initialState);
+  // }
 
   public setCurrentFilter(filter: FilterId): void {
     const meals =
       filter === "breakfast"
         ? breakfasts
         : filter === "lunch"
-        ? lunchs
-        : filter === "shakes"
-        ? shakes
-        : allMeals;
+          ? lunchs
+          : filter === "shakes"
+            ? shakes
+            : allMeals;
 
     this.setState({ meals: meals, currentFilter: filter });
   }

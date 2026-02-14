@@ -1,4 +1,4 @@
-import { FilterId } from "@src/entities/app";
+import type { FilterId } from "@/types/app";
 
 export interface CardMealProps {
   name: string;

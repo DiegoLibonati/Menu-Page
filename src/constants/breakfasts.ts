@@ -1,4 +1,4 @@
-import { Breakfast } from "@src/entities/app";
+import type { Breakfast } from "@/types/app";
 
 const breakfasts: Breakfast[] = [
   {

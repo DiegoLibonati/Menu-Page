@@ -1,4 +1,4 @@
-import { Shake } from "@src/entities/app";
+import type { Shake } from "@/types/app";
 
 const shakes: Shake[] = [
   {

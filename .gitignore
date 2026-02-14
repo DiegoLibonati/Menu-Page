@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 package-lock.json
+.env
+
+# Tailwind
+.tailwind.cache

@@ -1,7 +1,7 @@
-import type { Config } from "tailwindcss";
+/** @type {import('tailwindcss').Config} */
 
-const config: Config = {
-  content: ["./*.{html,js,ts,jsx,tsx}", "./src/**/*.{html,js,ts,jsx,tsx}"],
+const config = {
+  content: ["./index.html", "./src/**/*.{ts,js}"],
   theme: {
     extend: {
       colors: {
@@ -9,6 +9,9 @@ const config: Config = {
         secondary: "#fadcd9",
         white: "#ffffff",
         black: "#000000",
+      },
+      fontFamily: {
+        primary: ["Roboto", "Helvetica", "sans-serif"],
       },
     },
   },

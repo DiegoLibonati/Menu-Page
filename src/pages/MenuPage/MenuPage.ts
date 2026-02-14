@@ -1,10 +1,12 @@
-import { ButtonFilter } from "@src/components/ButtonFilter/ButtonFilter";
-import { CardMeal } from "@src/components/CardMeal/CardMeal";
+import type { Page } from "@/types/pages";
 
-import { mealStore } from "@src/stores/mealStore";
+import { ButtonFilter } from "@/components/ButtonFilter/ButtonFilter";
+import { CardMeal } from "@/components/CardMeal/CardMeal";
 
-export const MenuPage = (): HTMLElement => {
-  const main = document.createElement("main");
+import { mealStore } from "@/stores/mealStore";
+
+export const MenuPage = (): Page => {
+  const main = document.createElement("main") as Page;
   main.className = "w-full h-full min-h-screen bg-primary";
 
   main.innerHTML = `
@@ -49,7 +51,7 @@ export const MenuPage = (): HTMLElement => {
 
   filters?.append(filterAll, filterBreakfast, filterLunch, filterShake);
 
-  const renderMeals = () => {
+  const renderMeals = (): void => {
     const { meals } = mealStore.getState();
 
     const sectionMeals = main.querySelector<HTMLElement>(".meals");
@@ -69,7 +71,16 @@ export const MenuPage = (): HTMLElement => {
 
   renderMeals();
 
-  mealStore.subscribe("meals", renderMeals);
+  const unsubscribe = mealStore.subscribe("meals", renderMeals);
+
+  main.cleanup = (): void => {
+    unsubscribe();
+
+    filterAll.cleanup?.();
+    filterBreakfast.cleanup?.();
+    filterLunch.cleanup?.();
+    filterShake.cleanup?.();
+  };
 
   return main;
 };

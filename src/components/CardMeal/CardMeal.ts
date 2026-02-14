@@ -1,11 +1,12 @@
-import { CardMealProps } from "@src/entities/props";
+import type { CardMealProps } from "@/types/props";
+import type { CardMealComponent } from "@/types/components";
 
 export const CardMeal = ({
   amount,
   description,
   imgSrc,
   name,
-}: CardMealProps): HTMLDivElement => {
+}: CardMealProps): CardMealComponent => {
   const divRoot = document.createElement("div");
   divRoot.className =
     "card-meal flex flex-col w-full max-w-96 h-96 bg-secondary m-2 rounded-b-lg";

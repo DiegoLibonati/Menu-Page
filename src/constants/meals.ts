@@ -1,8 +1,8 @@
-import { Meal } from "@src/entities/app";
+import type { Meal } from "@/types/app";
 
-import breakfasts from "@src/constants/breakfasts";
-import lunchs from "@src/constants/lunchs";
-import shakes from "@src/constants/shakes";
+import breakfasts from "@/constants/breakfasts";
+import lunchs from "@/constants/lunchs";
+import shakes from "@/constants/shakes";
 
 const meals: Meal[] = [...breakfasts, ...lunchs, ...shakes];
 
