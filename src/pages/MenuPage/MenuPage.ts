@@ -30,22 +30,22 @@ export const MenuPage = (): Page => {
 
   const filterAll = ButtonFilter({
     id: "all",
-    ariaLabel: "all filter meal",
+    ariaLabel: "Show all meals",
     text: "All",
   });
   const filterBreakfast = ButtonFilter({
     id: "breakfast",
-    ariaLabel: "breakfast filter meal",
+    ariaLabel: "Show breakfast meals",
     text: "Breakfast",
   });
   const filterLunch = ButtonFilter({
     id: "lunch",
-    ariaLabel: "lunch filter meal",
+    ariaLabel: "Show lunch meals",
     text: "Lunch",
   });
   const filterShake = ButtonFilter({
     id: "shakes",
-    ariaLabel: "shakes filter meal",
+    ariaLabel: "Show shakes",
     text: "Shakes",
   });
 

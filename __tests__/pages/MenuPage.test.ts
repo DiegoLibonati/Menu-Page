@@ -41,16 +41,16 @@ describe("MenuPage", () => {
     renderPage();
 
     expect(
-      screen.getByRole("button", { name: "all filter meal" })
+      screen.getByRole("button", { name: "Show all meals" })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "breakfast filter meal" })
+      screen.getByRole("button", { name: "Show breakfast meals" })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "lunch filter meal" })
+      screen.getByRole("button", { name: "Show lunch meals" })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "shakes filter meal" })
+      screen.getByRole("button", { name: "Show shakes" })
     ).toBeInTheDocument();
   });
 
@@ -66,7 +66,7 @@ describe("MenuPage", () => {
     renderPage();
 
     const breakfastButton = screen.getByRole("button", {
-      name: "breakfast filter meal",
+      name: "Show breakfast meals",
     });
     await user.click(breakfastButton);
 
@@ -78,7 +78,7 @@ describe("MenuPage", () => {
     renderPage();
 
     const lunchButton = screen.getByRole("button", {
-      name: "lunch filter meal",
+      name: "Show lunch meals",
     });
     await user.click(lunchButton);
 
@@ -90,7 +90,7 @@ describe("MenuPage", () => {
     renderPage();
 
     const shakesButton = screen.getByRole("button", {
-      name: "shakes filter meal",
+      name: "Show shakes",
     });
     await user.click(shakesButton);
 
@@ -102,9 +102,9 @@ describe("MenuPage", () => {
     renderPage();
 
     const breakfastButton = screen.getByRole("button", {
-      name: "breakfast filter meal",
+      name: "Show breakfast meals",
     });
-    const allButton = screen.getByRole("button", { name: "all filter meal" });
+    const allButton = screen.getByRole("button", { name: "Show all meals" });
 
     await user.click(breakfastButton);
     await user.click(allButton);

@@ -26,7 +26,7 @@ describe("ButtonFilter Component", () => {
 
   const defaultProps: ButtonFilterProps = {
     id: "breakfast",
-    ariaLabel: "breakfast filter meal",
+    ariaLabel: "Show breakfast meals",
     text: "Breakfast",
   };
 
@@ -34,7 +34,7 @@ describe("ButtonFilter Component", () => {
     renderComponent(defaultProps);
 
     const button = screen.getByRole("button", {
-      name: "breakfast filter meal",
+      name: "Show breakfast meals",
     });
     expect(button).toBeInTheDocument();
     expect(button).toHaveAttribute("id", "breakfast");
@@ -46,7 +46,7 @@ describe("ButtonFilter Component", () => {
     renderComponent(defaultProps);
 
     const button = screen.getByRole("button", {
-      name: "breakfast filter meal",
+      name: "Show breakfast meals",
     });
     await user.click(button);
 
@@ -56,13 +56,13 @@ describe("ButtonFilter Component", () => {
   it("should render different filter buttons", () => {
     const lunchProps: ButtonFilterProps = {
       id: "lunch",
-      ariaLabel: "lunch filter meal",
+      ariaLabel: "Show lunch meals",
       text: "Lunch",
     };
 
     renderComponent(lunchProps);
 
-    const button = screen.getByRole("button", { name: "lunch filter meal" });
+    const button = screen.getByRole("button", { name: "Show lunch meals" });
     expect(button).toBeInTheDocument();
     expect(button.textContent).toBe("Lunch");
   });
@@ -74,7 +74,7 @@ describe("ButtonFilter Component", () => {
     button.cleanup?.();
 
     const buttonElement = screen.getByRole("button", {
-      name: "breakfast filter meal",
+      name: "Show breakfast meals",
     });
     await user.click(buttonElement);
 
