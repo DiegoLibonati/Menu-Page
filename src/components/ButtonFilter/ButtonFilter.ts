@@ -8,7 +8,7 @@ const onClick = (id: FilterId): void => {
   mealStore.setCurrentFilter(id);
 };
 
-export const ButtonFilter = ({
+const ButtonFilter = ({
   id,
   ariaLabel,
   text,
@@ -32,3 +32,5 @@ export const ButtonFilter = ({
 
   return button;
 };
+
+export default ButtonFilter;

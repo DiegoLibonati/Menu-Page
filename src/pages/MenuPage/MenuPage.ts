@@ -1,11 +1,11 @@
 import type { Page } from "@/types/pages";
 
-import { ButtonFilter } from "@/components/ButtonFilter/ButtonFilter";
-import { CardMeal } from "@/components/CardMeal/CardMeal";
+import ButtonFilter from "@/components/ButtonFilter/ButtonFilter";
+import CardMeal from "@/components/CardMeal/CardMeal";
 
 import { mealStore } from "@/stores/mealStore";
 
-export const MenuPage = (): Page => {
+const MenuPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "w-full h-full min-h-screen bg-primary";
 
@@ -84,3 +84,5 @@ export const MenuPage = (): Page => {
 
   return main;
 };
+
+export default MenuPage;

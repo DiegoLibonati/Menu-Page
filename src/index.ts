@@ -1,5 +1,5 @@
 import "@/index.css";
-import { MenuPage } from "@/pages/MenuPage/MenuPage";
+import MenuPage from "@/pages/MenuPage/MenuPage";
 
 const onInit = (): void => {
   const app = document.querySelector<HTMLDivElement>("#app");

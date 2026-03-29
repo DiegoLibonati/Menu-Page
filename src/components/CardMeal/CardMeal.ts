@@ -1,7 +1,7 @@
 import type { CardMealProps } from "@/types/props";
 import type { CardMealComponent } from "@/types/components";
 
-export const CardMeal = ({
+const CardMeal = ({
   amount,
   description,
   imgSrc,
@@ -26,3 +26,5 @@ export const CardMeal = ({
 
   return divRoot;
 };
+
+export default CardMeal;

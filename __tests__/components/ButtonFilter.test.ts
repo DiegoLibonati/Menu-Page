@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import type { ButtonFilterProps } from "@/types/props";
 import type { ButtonFilterComponent } from "@/types/components";
 
-import { ButtonFilter } from "@/components/ButtonFilter/ButtonFilter";
+import ButtonFilter from "@/components/ButtonFilter/ButtonFilter";
 
 import { mealStore } from "@/stores/mealStore";
 
