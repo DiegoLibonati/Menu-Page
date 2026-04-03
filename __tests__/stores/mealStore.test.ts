@@ -56,11 +56,11 @@ describe("MealStore", () => {
   });
 
   it("should notify listeners when filter changes", () => {
-    const listener = jest.fn();
+    const mockListener = jest.fn();
 
-    store.subscribe("meals", listener);
+    store.subscribe("meals", mockListener);
     store.setCurrentFilter("breakfast");
 
-    expect(listener).toHaveBeenCalledWith(breakfasts);
+    expect(mockListener).toHaveBeenCalledWith(breakfasts);
   });
 });
